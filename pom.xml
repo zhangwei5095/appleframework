@@ -955,13 +955,11 @@
     	<module>appleframework-distributed</module>
     	<module>appleframework-exception</module>
     	<module>appleframework-persistent-hibernate</module>
+		<module>appleframework-persistent-mybatis</module>
     	<module>appleframework-web</module>
     	<module>appleframework-starter</module>
     	<module>appleframework-server</module>
-    <module>appleframework-persistent-mybatis</module>
-    <module>appleframework-open</module>
-    <module>appleframework-mq</module>
-    <module>appleframework-mq-activemq</module>
-    <module>appleframework-mq-rabbit</module>
+		<module>appleframework-open</module>
+		<module>appleframework-mq</module>
 	</modules>
 </project>
