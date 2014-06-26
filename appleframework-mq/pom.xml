@@ -11,6 +11,7 @@
 	<artifactId>appleframework-mq</artifactId>
 	<name>appleframework-mq</name>
 	<url>http://maven.apache.org</url>
+	<packaging>pom</packaging>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,4 +37,9 @@
 
 	</dependencies>
 	
+	
+	<modules>
+		<module>appleframework-mq-active</module>
+		<module>appleframework-mq-rabbit</module>
+	</modules>
 </project>
