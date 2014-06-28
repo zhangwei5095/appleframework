@@ -960,5 +960,6 @@
     	<module>appleframework-starter</module>
     	<module>appleframework-server</module>
 		<module>appleframework-mq</module>
-	</modules>
+    <module>appleframework-rop</module>
+  </modules>
 </project>
