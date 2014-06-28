@@ -959,7 +959,6 @@
     	<module>appleframework-web</module>
     	<module>appleframework-starter</module>
     	<module>appleframework-server</module>
-		<module>appleframework-open</module>
 		<module>appleframework-mq</module>
 	</modules>
 </project>
