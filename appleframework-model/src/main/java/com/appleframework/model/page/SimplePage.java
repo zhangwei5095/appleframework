@@ -12,11 +12,11 @@ public class SimplePage implements Paginable, Serializable {
 	
 	private static final long serialVersionUID = -5755581162278120462L;
 
-	public static final int DEF_COUNT = 20;
+	public static final long DEF_COUNT = 20;
 
-	protected int totalCount = 0;
-	protected int pageSize = 20;
-	protected int pageNo = 1;
+	protected long totalCount = 0;
+	protected long pageSize = 20;
+	protected long pageNo = 1;
 
 	/**
 	 * 检查页码 checkPageNo
@@ -24,7 +24,7 @@ public class SimplePage implements Paginable, Serializable {
 	 * @param pageNo
 	 * @return if pageNo==null or pageNo<1 then return 1 else return pageNo
 	 */
-	public static int cpn(Integer pageNo) {
+	public static long cpn(Integer pageNo) {
 		return (pageNo == null || pageNo < 1) ? 1 : pageNo;
 	}
 
@@ -41,7 +41,7 @@ public class SimplePage implements Paginable, Serializable {
 	 * @param totalCount
 	 *            总共几条数据
 	 */
-	public SimplePage(int pageNo, int pageSize, int totalCount) {
+	public SimplePage(long pageNo, long pageSize, long totalCount) {
 		setTotalCount(totalCount);
 		setPageSize(pageSize);
 		setPageNo(pageNo);
@@ -55,7 +55,7 @@ public class SimplePage implements Paginable, Serializable {
 		if (pageNo == 1) {
 			return;
 		}
-		int tp = getTotalPage();
+		long tp = getTotalPage();
 		if (pageNo > tp) {
 			pageNo = tp;
 		}
@@ -64,21 +64,21 @@ public class SimplePage implements Paginable, Serializable {
 	/**
 	 * 获得页码
 	 */
-	public int getPageNo() {
+	public long getPageNo() {
 		return pageNo;
 	}
 
 	/**
 	 * 每页几条数据
 	 */
-	public int getPageSize() {
+	public long getPageSize() {
 		return pageSize;
 	}
 
 	/**
 	 * 总共几条数据
 	 */
-	public int getTotalCount() {
+	public long getTotalCount() {
 		return totalCount;
 	}
 	
@@ -86,8 +86,8 @@ public class SimplePage implements Paginable, Serializable {
 	/**
 	 * 总共几页
 	 */
-	public int getTotalPage() {
-		int totalPage = totalCount / pageSize;
+	public long getTotalPage() {
+		long totalPage = totalCount / pageSize;
 		if (totalPage == 0 || totalCount % pageSize != 0) {
 			totalPage++;
 		}
@@ -111,7 +111,7 @@ public class SimplePage implements Paginable, Serializable {
 	/**
 	 * 下一页页码
 	 */
-	public int getNextPage() {
+	public long getNextPage() {
 		if (isLastPage()) {
 			return pageNo;
 		} else {
@@ -122,7 +122,7 @@ public class SimplePage implements Paginable, Serializable {
 	/**
 	 * 上一页页码
 	 */
-	public int getPrePage() {
+	public long getPrePage() {
 		if (isFirstPage()) {
 			return pageNo;
 		} else {
@@ -135,7 +135,7 @@ public class SimplePage implements Paginable, Serializable {
 	 * 
 	 * @param totalCount
 	 */
-	public void setTotalCount(int totalCount) {
+	public void setTotalCount(long totalCount) {
 		if (totalCount < 0) {
 			this.totalCount = 0;
 		} else {
@@ -148,7 +148,7 @@ public class SimplePage implements Paginable, Serializable {
 	 * 
 	 * @param pageSize
 	 */
-	public void setPageSize(int pageSize) {
+	public void setPageSize(long pageSize) {
 		if (pageSize < 1) {
 			this.pageSize = DEF_COUNT;
 		} else {
@@ -161,7 +161,7 @@ public class SimplePage implements Paginable, Serializable {
 	 * 
 	 * @param pageNo
 	 */
-	public void setPageNo(int pageNo) {
+	public void setPageNo(long pageNo) {
 		if (pageNo < 1) {
 			this.pageNo = 1;
 		} else {

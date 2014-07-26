@@ -13,28 +13,28 @@ public interface Paginable {
 	 * 
 	 * @return
 	 */
-	public int getTotalCount();
+	public long getTotalCount();
 
 	/**
 	 * 总页数
 	 * 
 	 * @return
 	 */
-	public int getTotalPage();
+	public long getTotalPage();
 
 	/**
 	 * 每页记录数
 	 * 
 	 * @return
 	 */
-	public int getPageSize();
+	public long getPageSize();
 
 	/**
 	 * 当前页号
 	 * 
 	 * @return
 	 */
-	public int getPageNo();
+	public long getPageNo();
 
 	/**
 	 * 是否第一页
@@ -53,11 +53,11 @@ public interface Paginable {
 	/**
 	 * 返回下页的页号
 	 */
-	public int getNextPage();
+	public long getNextPage();
 
 	/**
 	 * 返回上页的页号
 	 */
-	public int getPrePage();
+	public long getPrePage();
 
 }

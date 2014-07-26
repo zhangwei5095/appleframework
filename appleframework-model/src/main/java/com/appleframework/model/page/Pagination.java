@@ -14,6 +14,18 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 
 	public Pagination() {
 	}
+	
+	/**
+	 * 构造器
+	 * 
+	 * @param pageNo
+	 *            页码
+	 * @param pageSize
+	 *            每页几条数据
+	 */
+	public Pagination(long pageNo, long pageSize) {
+		super(pageNo, pageSize, 0);
+	}
 
 	/**
 	 * 构造器
@@ -25,7 +37,7 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 * @param totalCount
 	 *            总共几条数据
 	 */
-	public Pagination(int pageNo, int pageSize, int totalCount) {
+	public Pagination(long pageNo, long pageSize, long totalCount) {
 		super(pageNo, pageSize, totalCount);
 	}
 
@@ -41,7 +53,7 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 * @param list
 	 *            分页内容
 	 */
-	public Pagination(int pageNo, int pageSize, int totalCount, List<?> list) {
+	public Pagination(long pageNo, long pageSize, long totalCount, List<?> list) {
 		super(pageNo, pageSize, totalCount);
 		this.list = list;
 	}
@@ -51,7 +63,7 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 * 
 	 * @return
 	 */
-	public int getFirstResult() {
+	public long getFirstResult() {
 		return (pageNo - 1) * pageSize;
 	}
 
@@ -82,7 +94,7 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	/**
 	 * 当前页几条数据
 	 */
-	public int getPageCount() {
+	public long getPageCount() {
 		if(null != list)
 			return list.size();
 		else
