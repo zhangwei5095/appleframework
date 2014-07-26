@@ -292,7 +292,7 @@ public class LocalHibernateBaseDAO {
 
 		if (targetPage != -1) {// 等于-1时，不作分页
 			query.setFirstResult((int)p.getFirstResult());
-			query.setMaxResults(p.getPageSize());
+			query.setMaxResults((int)p.getPageSize());
 		}
 		query.setCacheable(true);// set true
 		String[] name = query.getReturnAliases();
@@ -548,7 +548,7 @@ public class LocalHibernateBaseDAO {
 		finder.setParamsToQuery(query);
 		if (pageNo != -1) {
 			query.setFirstResult((int)p.getFirstResult());
-			query.setMaxResults(p.getPageSize());
+			query.setMaxResults((int)p.getPageSize());
 		}
 		List list = query.list();
 		p.setList(list);
