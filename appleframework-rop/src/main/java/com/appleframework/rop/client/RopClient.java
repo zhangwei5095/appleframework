@@ -22,7 +22,8 @@ public interface RopClient {
      *
      * @param ropConverter
      */
-    void addRopConvertor(RopConverter ropConverter);
+    @SuppressWarnings("rawtypes")
+	void addRopConvertor(RopConverter ropConverter);
 
     /**
      * 设置method系统参数的参数名，下同

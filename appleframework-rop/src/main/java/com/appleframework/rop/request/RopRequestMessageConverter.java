@@ -39,7 +39,8 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class RopRequestMessageConverter implements ConditionalGenericConverter {
 
-    private static final ConcurrentMap<Class, JAXBContext> jaxbContexts = new ConcurrentHashMap<Class, JAXBContext>();
+    @SuppressWarnings("rawtypes")
+	private static final ConcurrentMap<Class, JAXBContext> jaxbContexts = new ConcurrentHashMap<Class, JAXBContext>();
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -60,7 +61,7 @@ public class RopRequestMessageConverter implements ConditionalGenericConverter {
      * @return
      */
     public boolean matches(TypeDescriptor sourceType, TypeDescriptor targetType) {
-        Class clazz = targetType.getObjectType();
+        Class<?> clazz = targetType.getObjectType();
         return clazz.isAnnotationPresent(XmlRootElement.class) || clazz.isAnnotationPresent(XmlType.class);
     }
 
@@ -83,7 +84,7 @@ public class RopRequestMessageConverter implements ConditionalGenericConverter {
         }
     }
 
-    private Unmarshaller createUnmarshaller(Class clazz) throws JAXBException {
+    private Unmarshaller createUnmarshaller(Class<?> clazz) throws JAXBException {
         try {
             JAXBContext jaxbContext = getJaxbContext(clazz);
             return jaxbContext.createUnmarshaller();
@@ -93,7 +94,7 @@ public class RopRequestMessageConverter implements ConditionalGenericConverter {
         }
     }
 
-    private JAXBContext getJaxbContext(Class clazz) {
+    private JAXBContext getJaxbContext(Class<?> clazz) {
         Assert.notNull(clazz, "'clazz' must not be null");
         JAXBContext jaxbContext = jaxbContexts.get(clazz);
         if (jaxbContext == null) {

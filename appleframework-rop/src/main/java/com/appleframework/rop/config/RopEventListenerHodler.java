@@ -14,9 +14,10 @@ import com.appleframework.rop.event.RopEventListener;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("rawtypes")
 public class RopEventListenerHodler {
 
-    private RopEventListener ropEventListener;
+	private RopEventListener ropEventListener;
 
     public RopEventListenerHodler(RopEventListener ropEventListener) {
         this.ropEventListener = ropEventListener;

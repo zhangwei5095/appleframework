@@ -36,7 +36,9 @@ import java.io.IOException;
  */
 public class RopServlet extends HttpServlet {
 
-    protected  Logger logger = LoggerFactory.getLogger(getClass());
+	private static final long serialVersionUID = 4782610693778962573L;
+
+	protected  Logger logger = LoggerFactory.getLogger(getClass());
 
     private ServiceRouter serviceRouter;
 

@@ -12,6 +12,7 @@ package com.appleframework.rop.request;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class IllegalUploadFileFormatException extends IllegalArgumentException {
 
     public IllegalUploadFileFormatException() {

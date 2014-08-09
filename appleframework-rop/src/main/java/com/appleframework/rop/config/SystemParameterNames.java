@@ -28,7 +28,7 @@ public class SystemParameterNames {
     //会话id默认参数名
     private static final String SESSION_ID = "sessionId";
 
-    //应用键的默认参数名        ;
+    //应用键的默认参数名
     private static final String APP_KEY = "appKey";
 
     //服务版本号的默认参数名
@@ -42,6 +42,7 @@ public class SystemParameterNames {
     private static String format = FORMAT;
 
     private static String locale = LOCALE;
+    
     private static String sessionId = SESSION_ID;
 
     private static String appKey = APP_KEY;

@@ -4,6 +4,7 @@
  */
 package com.appleframework.rop.response;
 
+import com.appleframework.rop.RopRequestContext;
 import com.appleframework.rop.security.MainError;
 import com.appleframework.rop.security.MainErrorType;
 import com.appleframework.rop.security.MainErrors;
@@ -11,7 +12,6 @@ import com.appleframework.rop.security.MainErrors;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Locale;
 
 /**
  * <pre>
@@ -28,8 +28,9 @@ public class RejectedServiceResponse extends ErrorResponse  {
     public RejectedServiceResponse() {
     }
 
-    public RejectedServiceResponse(Locale locale) {
-        MainError mainError = MainErrors.getError(MainErrorType.FORBIDDEN_REQUEST, locale);
+    public RejectedServiceResponse(RopRequestContext context) {
+        MainError mainError = MainErrors.getError(MainErrorType.FORBIDDEN_REQUEST, context.getLocale(),
+                                                  context.getMethod(),context.getVersion());
         setMainError(mainError);
     }
 }

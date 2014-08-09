@@ -4,7 +4,6 @@
  */
 package com.appleframework.rop.response;
 
-import com.appleframework.rop.CommonConstant;
 import com.appleframework.rop.security.MainError;
 import com.appleframework.rop.security.MainErrorType;
 import com.appleframework.rop.security.MainErrors;
@@ -26,8 +25,8 @@ import java.util.Locale;
 @XmlRootElement(name = "error")
 public class ErrorResponse{
 
-    @XmlAttribute
-    protected String errorToken = CommonConstant.ERROR_TOKEN;
+    /*@XmlAttribute
+    protected String errorToken = CommonConstant.ERROR_TOKEN;*/
 
     @XmlAttribute
     protected String code;
@@ -96,9 +95,9 @@ public class ErrorResponse{
         setSolution(mainError.getSolution());
     }
 
-    public String getErrorToken() {
+    /*public String getErrorToken() {
         return errorToken;
-    }
+    }*/
 
     /**
      * 对服务名进行标准化处理：如book.upload转换为book-upload，

@@ -300,7 +300,7 @@ public class DefaultRopClient implements RopClient {
         }
 
         private boolean isSuccessful(String content) {
-            return !(content.contains(CommonConstant.ERROR_TOKEN));
+            return !(content.contains(CommonConstant.ERROR_CODE));
         }
 
         private String buildGetUrl(Map<String, String> form) {
