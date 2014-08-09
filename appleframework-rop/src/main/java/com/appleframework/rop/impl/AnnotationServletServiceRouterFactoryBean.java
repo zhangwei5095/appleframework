@@ -64,7 +64,7 @@ public class AnnotationServletServiceRouterFactoryBean
 
     private int serviceTimeoutSeconds = -1;
 
-    private Class<? extends ThreadFerry> threadFerryClass;
+    private Class<? extends ThreadFerry> threadFerryClass = DumbThreadFerry.class;
 
     private FormattingConversionService formattingConversionService;
 
@@ -110,7 +110,8 @@ public class AnnotationServletServiceRouterFactoryBean
         this.threadFerryClass = threadFerryClass;
     }
 
-    public void setThreadFerryClassName(String threadFerryClassName) {
+    @SuppressWarnings("unchecked")
+	public void setThreadFerryClassName(String threadFerryClassName) {
         try {
             if (StringUtils.hasText(threadFerryClassName)) {
                 Class<?> threadFerryClass =
@@ -126,7 +127,8 @@ public class AnnotationServletServiceRouterFactoryBean
         }
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public void afterPropertiesSet() throws Exception {
         //实例化一个AnnotationServletServiceRouter
         serviceRouter = new AnnotationServletServiceRouter();
@@ -225,7 +227,8 @@ public class AnnotationServletServiceRouterFactoryBean
         }
     }
 
-    private ArrayList<RopEventListener> getListeners() {
+    @SuppressWarnings("rawtypes")
+	private ArrayList<RopEventListener> getListeners() {
         Map<String, RopEventListenerHodler> listenerMap = this.applicationContext.getBeansOfType(RopEventListenerHodler.class);
         if (listenerMap != null && listenerMap.size() > 0) {
             ArrayList<RopEventListener> ropEventListeners = new ArrayList<RopEventListener>(listenerMap.size());

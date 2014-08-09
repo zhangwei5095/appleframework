@@ -9,8 +9,6 @@ import com.appleframework.rop.ServiceMethodAdapter;
 import com.appleframework.rop.ServiceMethodHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
-import org.springframework.core.ParameterNameDiscoverer;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -26,9 +24,7 @@ import java.lang.reflect.InvocationTargetException;
 public class AnnotationServiceMethodAdapter implements ServiceMethodAdapter {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
-
-    private ParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
-
+    
     /**
      * 调用ROP服务方法
      *

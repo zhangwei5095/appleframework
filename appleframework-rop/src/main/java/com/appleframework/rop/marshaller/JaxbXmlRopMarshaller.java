@@ -25,7 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class JaxbXmlRopMarshaller implements RopMarshaller {
 
-    private static Map<Class, JAXBContext> jaxbContextHashMap = new ConcurrentHashMap<Class, JAXBContext>();
+    @SuppressWarnings("rawtypes")
+	private static Map<Class, JAXBContext> jaxbContextHashMap = new ConcurrentHashMap<Class, JAXBContext>();
 
     public void marshaller(Object object, OutputStream outputStream) {
         try {

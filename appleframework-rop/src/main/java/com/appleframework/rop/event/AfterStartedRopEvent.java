@@ -14,6 +14,7 @@ import com.appleframework.rop.RopContext;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class AfterStartedRopEvent extends RopEvent {
 
     public AfterStartedRopEvent(Object source, RopContext ropContext) {

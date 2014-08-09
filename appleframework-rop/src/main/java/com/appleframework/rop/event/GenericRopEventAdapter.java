@@ -15,9 +15,10 @@ import org.springframework.core.GenericTypeResolver;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("rawtypes")
 public class GenericRopEventAdapter implements SmartRopEventListener {
 
-    private final RopEventListener delegate;
+	private final RopEventListener delegate;
 
     public GenericRopEventAdapter(RopEventListener delegate) {
         this.delegate = delegate;
@@ -25,9 +26,9 @@ public class GenericRopEventAdapter implements SmartRopEventListener {
 
     @Override
     public boolean supportsEventType(Class<? extends RopEvent> eventType) {
-        Class typeArg = GenericTypeResolver.resolveTypeArgument(this.delegate.getClass(), RopEventListener.class);
+        Class<?> typeArg = GenericTypeResolver.resolveTypeArgument(this.delegate.getClass(), RopEventListener.class);
         if (typeArg == null || typeArg.equals(RopEvent.class)) {
-            Class targetClass = AopUtils.getTargetClass(this.delegate);
+            Class<?> targetClass = AopUtils.getTargetClass(this.delegate);
             if (targetClass != this.delegate.getClass()) {
                 typeArg = GenericTypeResolver.resolveTypeArgument(targetClass, RopEventListener.class);
             }
@@ -35,7 +36,8 @@ public class GenericRopEventAdapter implements SmartRopEventListener {
         return (typeArg == null || typeArg.isAssignableFrom(eventType));
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void onRopEvent(RopEvent ropEvent) {
         this.delegate.onRopEvent(ropEvent);
     }

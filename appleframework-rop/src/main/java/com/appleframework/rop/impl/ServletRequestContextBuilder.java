@@ -197,7 +197,8 @@ public class ServletRequestContextBuilder implements RequestContextBuilder {
         return ropRequest;
     }
 
-    private HashMap<String, String> getRequestParams(HttpServletRequest request) {
+    @SuppressWarnings("rawtypes")
+	private HashMap<String, String> getRequestParams(HttpServletRequest request) {
         Map srcParamMap = request.getParameterMap();
         HashMap<String, String> destParamMap = new HashMap<String, String>(srcParamMap.size());
         for (Object obj : srcParamMap.keySet()) {

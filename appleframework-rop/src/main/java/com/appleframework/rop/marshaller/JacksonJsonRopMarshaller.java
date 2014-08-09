@@ -39,7 +39,7 @@ public class JacksonJsonRopMarshaller implements RopMarshaller {
     }
 
     private ObjectMapper getObjectMapper() throws IOException {
-        if (this.objectMapper == null) {
+        if (JacksonJsonRopMarshaller.objectMapper == null) {
             ObjectMapper objectMapper = new ObjectMapper();
             AnnotationIntrospector introspector = new JaxbAnnotationIntrospector();
             SerializationConfig serializationConfig = objectMapper.getSerializationConfig();
@@ -49,9 +49,9 @@ public class JacksonJsonRopMarshaller implements RopMarshaller {
                     .withSerializationInclusion(JsonSerialize.Inclusion.NON_EMPTY)
                     .withAnnotationIntrospector(introspector);
             objectMapper.setSerializationConfig(serializationConfig);
-            this.objectMapper = objectMapper;
+            JacksonJsonRopMarshaller.objectMapper = objectMapper;
         }
-        return this.objectMapper;
+        return JacksonJsonRopMarshaller.objectMapper;
     }
 }
 

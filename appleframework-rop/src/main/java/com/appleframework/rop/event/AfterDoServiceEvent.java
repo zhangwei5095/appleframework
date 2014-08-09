@@ -14,6 +14,7 @@ import com.appleframework.rop.RopRequestContext;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class AfterDoServiceEvent extends RopEvent {
 
     private RopRequestContext ropRequestContext;

@@ -14,9 +14,10 @@ import java.util.*;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("rawtypes")
 public abstract class AbstractRopEventMulticaster implements RopEventMulticaster {
 
-    private Set<RopEventListener> ropEventListeners = new HashSet<RopEventListener>();
+	private Set<RopEventListener> ropEventListeners = new HashSet<RopEventListener>();
 
     private static final Map<Class<? extends RopEvent>, ListenerRegistry> cachedRopEventListeners =
             new HashMap<Class<? extends RopEvent>, ListenerRegistry>();

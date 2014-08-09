@@ -48,8 +48,6 @@ public class SimpleRopRequestContext implements RopRequestContext {
 
     private Object ropResponse;
 
-    private RopRequest ropRequest;
-
     private long serviceBeginTime = -1;
 
     private long serviceEndTime = -1;
@@ -206,7 +204,7 @@ public class SimpleRopRequestContext implements RopRequestContext {
     }
 
     public void setMessageFormat(MessageFormat messageFormat) {
-        this.messageFormat.set(messageFormat);
+    	SimpleRopRequestContext.messageFormat.set(messageFormat);
     }
 
     @Override

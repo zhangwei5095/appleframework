@@ -12,6 +12,7 @@ package com.appleframework.rop.event;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("rawtypes")
 public interface RopEventMulticaster {
 
     /**
@@ -19,7 +20,7 @@ public interface RopEventMulticaster {
      *
      * @param listener the listener to add
      */
-    void addRopListener(RopEventListener listener);
+	void addRopListener(RopEventListener listener);
 
     /**
      * Remove a listener from the notification list.
