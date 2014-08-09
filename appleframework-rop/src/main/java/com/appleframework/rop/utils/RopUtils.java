@@ -64,9 +64,12 @@ public class RopUtils {
                 sb.append(paramName).append(paramValues.get(paramName));
             }
             sb.append(secret);
-            byte[] sha1Digest = getSHA1Digest(sb.toString());
-            return byte2hex(sha1Digest);
+            //byte[] sha1Digest = getSHA1Digest(sb.toString());
+            //return byte2hex(sha1Digest)
+            byte[] md5Digest = getMD5Digest(sb.toString());
+            return byte2hex(md5Digest);
         } catch (IOException e) {
+        	logger.error(e.getMessage());
             throw new RopException(e);
         }
     }    
@@ -79,7 +82,8 @@ public class RopUtils {
         }
     }
 
-    private static byte[] getSHA1Digest(String data) throws IOException {
+    @SuppressWarnings("unused")
+	private static byte[] getSHA1Digest(String data) throws IOException {
         byte[] bytes = null;
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");
@@ -90,7 +94,7 @@ public class RopUtils {
         return bytes;
     }
 
-    private static byte[] getMD5Digest(String data) throws IOException {
+	private static byte[] getMD5Digest(String data) throws IOException {
         byte[] bytes = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

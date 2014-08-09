@@ -20,7 +20,8 @@ public class RopSessionHolder {
         return ropSession.get();
     }
 
-    public static <T> T get(Class<T> sessionClazz){
+    @SuppressWarnings("unchecked")
+	public static <T> T get(Class<T> sessionClazz){
         return (T)ropSession.get();
     }
 }

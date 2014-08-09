@@ -9,6 +9,8 @@ package com.appleframework.rop.session;
  * @author 陈雄华
  * @version 1.0
  */
+@SuppressWarnings("serial")
 public class SimpleSession extends AbstractSession {
+	
 }
 

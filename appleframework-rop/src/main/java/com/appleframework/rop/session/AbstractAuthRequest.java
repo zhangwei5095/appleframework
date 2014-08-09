@@ -6,11 +6,11 @@ package com.appleframework.rop.session;
  */
 public abstract class AbstractAuthRequest implements AuthRequest {
 
-    private Object detail;
+	private Object detail;
 
     @Override
     public Object getDetail() {
-        return null;
+        return this.detail;
     }
 
     public void setDetail(Object detail) {

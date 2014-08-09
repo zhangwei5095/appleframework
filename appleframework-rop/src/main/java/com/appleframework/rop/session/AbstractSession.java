@@ -7,7 +7,6 @@ package com.appleframework.rop.session;
 import com.appleframework.rop.CommonConstant;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,7 +17,8 @@ import java.util.Map;
  * @author 陈雄华
  * @version 1.0
  */
-public  abstract class AbstractSession implements Session {
+@SuppressWarnings("serial")
+public abstract class AbstractSession implements Session {
 
     private Map<String, Object> attributes = new HashMap<String, Object>();
 

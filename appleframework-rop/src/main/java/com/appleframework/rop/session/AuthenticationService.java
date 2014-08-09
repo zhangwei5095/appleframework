@@ -69,7 +69,7 @@ public abstract class AuthenticationService<T extends RopRequest,R extends RopRe
         logoutRequest.getRopRequestContext().removeSession();
     }
 
-    private  String uuid() {
+    public static String uuid() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString().toUpperCase();
     }
