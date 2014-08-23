@@ -31,5 +31,25 @@ public interface Container {
      * stop.
      */
     void stop();
+    
+    /**
+     * restart.
+     */
+    void restart();
+    
+    /**
+     * isRunning.
+     */
+    boolean isRunning();
+    
+    /**
+     * name.
+     */
+    String getName();
+    
+    /**
+     * type.
+     */
+    String getType();
 
 }

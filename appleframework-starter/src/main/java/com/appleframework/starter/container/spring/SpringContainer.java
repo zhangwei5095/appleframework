@@ -3,6 +3,7 @@ package com.appleframework.starter.container.spring;
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.appleframework.config.PropertyConfigurer;
 import com.appleframework.starter.container.Container;
 
 /**
@@ -26,6 +27,11 @@ public class SpringContainer implements Container {
         String configPath = DEFAULT_SPRING_CONFIG;
         context = new ClassPathXmlApplicationContext(configPath.split("[,\\s]+"));
         context.start();
+        
+        String applicationName = PropertyConfigurer.getString("application.name");
+        if(null != applicationName) {
+        	context.setDisplayName(applicationName);
+        }
     }
 
     public void stop() {
@@ -39,5 +45,38 @@ public class SpringContainer implements Container {
             logger.error(e.getMessage(), e);
         }
     }
+    
+    public void restart() {
+        try {
+            this.stop();
+            this.start();
+        } catch (Throwable e) {
+            logger.error(e.getMessage(), e);
+        }
+    }
+    
+    public boolean isRunning() {
+    	if (context != null) {
+    		return context.isRunning();
+    	}
+    	else {
+    		return false;
+    	}
+    }
+
+	@Override
+	public String getName() {
+		if (context != null) {
+			return context.getDisplayName();
+    	}
+    	else {
+    		return PropertyConfigurer.getString("application.name");
+    	}
+	}
+    
+	@Override
+	public String getType() {
+		return "SpringContainer";
+	}
 
 }
