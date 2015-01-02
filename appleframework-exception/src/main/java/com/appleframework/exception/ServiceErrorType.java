@@ -20,8 +20,8 @@ public enum ServiceErrorType {
 
     static {
     	
-    	errorCodeMap.put(ServiceErrorType.SERVICE_UNAVAILABLE,  "0001");
-    	errorCodeMap.put(ServiceErrorType.BUSINESS_LOGIC_ERROR, "0009");
+    	errorCodeMap.put(ServiceErrorType.SERVICE_UNAVAILABLE,  "1");
+    	errorCodeMap.put(ServiceErrorType.BUSINESS_LOGIC_ERROR, "9");
     	        
         errorMsgMap.put(ServiceErrorType.SERVICE_UNAVAILABLE,  "服务不可用");
         errorMsgMap.put(ServiceErrorType.BUSINESS_LOGIC_ERROR, "业务逻辑出错");

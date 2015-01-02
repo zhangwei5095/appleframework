@@ -9,6 +9,9 @@
  * http://www.glsx.com.cn
  */
 package com.appleframework.exception;
+
+import com.appleframework.config.core.PropertyConfigurer;
+
 /**
  * Base class for all custom exception thrown in CloudFramework
  * 
@@ -82,5 +85,14 @@ public class ServiceException extends Exception {
 		super(ServiceErrorType.msgValue(serviceErrorType) + ":" + message, throwable);
 		this.code = ServiceErrorType.codeValue(serviceErrorType);
 	}
+
+	@Override
+	public String getMessage() {
+		String message = super.getMessage();
+		if(null == message && null != code) 
+			message = PropertyConfigurer.getValue(code);
+		return message;
+	}
+	
 }
 
