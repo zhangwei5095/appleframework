@@ -31,12 +31,24 @@ public class ServiceException extends Exception {
      */
 	private String code;
 	
+	/**
+     * Exception message 
+     */
+	private String message;
+	
     public String getCode() {
 		return code;
 	}
 
 	public void setCode(String code) {
 		this.code = code;
+		if(null != code && null != this.message) {
+    		this.message = PropertyConfigurer.getValue(code);
+    	}
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	/**
@@ -50,13 +62,17 @@ public class ServiceException extends Exception {
      * Create a new CloudframeworkException from a message which explain the nature of
      * the Exception
      */
-    public ServiceException(String message) {
-        super(message);
+    public ServiceException(String code) {
+    	this.code = code;
+    	if(null != code) {
+    		this.message = PropertyConfigurer.getValue(code);
+    	}
     }
 
     public ServiceException(String code, String message) {
-        super(message);
-        this.code = code;
+    	this.code = code;
+        this.message = message;;
+        
     }
     /**
      * Create a new CloudframeworkException from a message and a base throwable
@@ -69,6 +85,7 @@ public class ServiceException extends Exception {
     public ServiceException(String code, String message, Throwable throwable) {
         super(message, throwable);
         this.code = code;
+        this.message = message;
     }
     
     public ServiceException(ServiceErrorType serviceErrorType) {
@@ -88,10 +105,15 @@ public class ServiceException extends Exception {
 
 	@Override
 	public String getMessage() {
-		String message = super.getMessage();
-		if(null == message && null != code) 
-			message = PropertyConfigurer.getValue(code);
-		return message;
+		if(null != super.getMessage()) {
+			return super.getMessage();
+		}
+		if(null != this.message) {
+			return this.message;
+		}
+		if(null != code) 
+			return PropertyConfigurer.getValue(code);
+		return this.message;
 	}
 	
 }
