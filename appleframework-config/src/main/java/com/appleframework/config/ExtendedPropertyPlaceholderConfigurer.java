@@ -21,8 +21,20 @@ public class ExtendedPropertyPlaceholderConfigurer extends PropertyPlaceholderCo
 	
 	private Properties props;
 	
+	private boolean loadDiamond = true;
+	
+	public void setLoadDiamond(boolean loadDiamond) {
+		this.loadDiamond = loadDiamond;
+	}
+
 	@Override
 	protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props) throws BeansException {
+		if(!loadDiamond) {
+			super.processProperties(beanFactory, props);
+			this.props = props;
+			PropertyConfigurer.load(props);
+			return;
+		}
 		
 		String group = props.getProperty("deploy.group");
 		String dataId = props.getProperty("deploy.dataId");

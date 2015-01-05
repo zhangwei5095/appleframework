@@ -73,6 +73,17 @@ public class PropertyConfigurer {
 		}
 	}
 	
+	public static String getValue(String key, String defaultValue) {
+		Object object = getProperty(key);
+		if(null != object) {
+			return (String)object;
+		}
+		else {
+			logger.warn("配置项为" + key + "的配置未在Diamond中添加或设置的内容为空");
+			return defaultValue;
+		}
+	}
+	
 	public static String getString(String key) {
 		Object object = getProperty(key);
 		if(null != object) {
@@ -81,6 +92,17 @@ public class PropertyConfigurer {
 		else {
 			logger.warn("配置项为" + key + "的配置未在Diamond中添加或设置的内容为空");
 			return null;
+		}
+	}
+	
+	public static String getString(String key, String defaultString) {
+		Object object = getProperty(key);
+		if(null != object) {
+			return (String)object;
+		}
+		else {
+			logger.warn("配置项为" + key + "的配置未在Diamond中添加或设置的内容为空");
+			return defaultString;
 		}
 	}
 	
@@ -94,6 +116,16 @@ public class PropertyConfigurer {
 		}
 	}
 	
+	public static Long getLong(String key, long defaultLong) {
+		Object object = getProperty(key);
+		if(null != object)
+			return Long.parseLong(object.toString());
+		else {
+			logger.warn("配置项为" + key + "的配置未在Diamond中添加或设置的内容为空");
+			return defaultLong;
+		}
+	}
+	
 	public static Integer getInteger(String key) {
 		Object object = getProperty(key);
 		if(null != object) {
@@ -102,6 +134,17 @@ public class PropertyConfigurer {
 		else {
 			logger.warn("配置项为" + key + "的配置未在Diamond中添加或设置的内容为空");
 			return null;
+		}
+	}
+	
+	public static Integer getInteger(String key, int defaultInt) {
+		Object object = getProperty(key);
+		if(null != object) {
+			return Integer.parseInt(object.toString());
+		}
+		else {
+			logger.warn("配置项为" + key + "的配置未在Diamond中添加或设置的内容为空");
+			return defaultInt;
 		}
 	}
 	
