@@ -2,6 +2,8 @@ package com.appleframework.model.page;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  * 列表分页。包含list属性。
  * 
@@ -63,6 +65,7 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 * 
 	 * @return
 	 */
+	@XmlTransient
 	public long getFirstResult() {
 		return (pageNo - 1) * pageSize;
 	}
