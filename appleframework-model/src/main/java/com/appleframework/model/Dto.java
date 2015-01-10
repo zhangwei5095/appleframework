@@ -184,5 +184,5 @@ public interface Dto extends Map<String, Object> {
 	 * @param id 压入id的PO对象
 	 */
 	public Object getDefaultId();
-		
+			
 }
