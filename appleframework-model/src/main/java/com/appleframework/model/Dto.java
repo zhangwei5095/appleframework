@@ -184,5 +184,38 @@ public interface Dto extends Map<String, Object> {
 	 * @param id 压入id的PO对象
 	 */
 	public Object getDefaultId();
-			
+	
+	
+	
+	//
+	public void addParameters(Object... pairs);
+	
+	/**
+	 * Add parameters to a new dto.
+	 * 
+	 * @param parameters
+	 * @return A new URL 
+	 */
+    public void addParameters(Map<String, Object> parameters);
+    
+    public void addParameters(String key, Object value);
+    
+    public Object getParameter(String key);
+
+    public String getParameter(String key, String defaultValue);
+    
+    public double getParameter(String key, double defaultValue);
+    
+    public float getParameter(String key, float defaultValue);
+
+    public long getParameter(String key, long defaultValue);
+
+    public int getParameter(String key, int defaultValue);
+
+    public short getParameter(String key, short defaultValue);
+
+    public byte getParameter(String key, byte defaultValue);
+    
+    public boolean getParameter(String key, boolean defaultValue);
+	
 }
