@@ -107,17 +107,17 @@ public interface Dto extends Map<String, Object> {
 	 * 给Dto压入第一个默认PO对象<br>
 	 * 为了方便存取(省去根据Key来存取和类型转换的过程)
 	 * 
-	 * @param PO
-	 *            压入Dto的PO对象
+	 * @param BO
+	 *            压入Dto的BO对象
 	 */
-	public void setDefaultPo(Object po);
+	public void setDefaultBo(Object bo);
 
 	/**
-	 * 获取第一个默认PO对象<br>
+	 * 获取第一个默认BO对象<br>
 	 * 为了方便存取(省去根据Key来存取和类型转换的过程)
-	 * @param PO 压入Dto的PO对象
+	 * @param BO 压入Dto的PO对象
 	 */
-	public Object getDefaultPo();
+	public Object getDefaultBo();
 	
 	/**
 	 * 给Pagination压入第一个默认Pagination对象<br>
