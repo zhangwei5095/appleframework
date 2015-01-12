@@ -42,9 +42,6 @@ public class ServiceException extends Exception {
 
 	public void setCode(String code) {
 		this.code = code;
-		if(null != code && null != this.message) {
-    		this.message = PropertyConfigurer.getValue(code);
-    	}
 	}
 
 	public void setMessage(String message) {
@@ -64,9 +61,6 @@ public class ServiceException extends Exception {
      */
     public ServiceException(String code) {
     	this.code = code;
-    	if(null != code) {
-    		this.message = PropertyConfigurer.getValue(code);
-    	}
     }
 
     public ServiceException(String code, String message) {
