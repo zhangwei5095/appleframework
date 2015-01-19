@@ -57,37 +57,37 @@ public class PaginationDirective extends BaseDirective {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
 		String pattern = (String)DirectiveUtil.getObjectParameter(PATTERN_PARAMETER_NAME, params);
-		Integer pageNumber = (Integer)DirectiveUtil.getObjectParameter(PAGE_NUMBER_PARAMETER_NAME, params);
-		Integer totalPages = (Integer)DirectiveUtil.getObjectParameter(TOTAL_PAGES_PARAMETER_NAME, params);
-		Integer segmentCount = (Integer)DirectiveUtil.getObjectParameter(SEGMENT_COUNT_PARAMETER_NAME, params);
+		Long pageNumber = (Long)DirectiveUtil.getObjectParameter(PAGE_NUMBER_PARAMETER_NAME, params);
+		Long totalPages = (Long)DirectiveUtil.getObjectParameter(TOTAL_PAGES_PARAMETER_NAME, params);
+		Long segmentCount = (Long)DirectiveUtil.getObjectParameter(SEGMENT_COUNT_PARAMETER_NAME, params);
 
 		if (pageNumber == null || pageNumber < 1) {
-			pageNumber = 1;
+			pageNumber = 1L;
 		}
 		if (totalPages == null || totalPages < 1) {
-			totalPages = 1;
+			totalPages = 1L;
 		}
 		if (segmentCount == null || segmentCount < 1) {
-			segmentCount = 5;
+			segmentCount = 5L;
 		}
 		boolean hasPrevious = pageNumber > 1;
 		boolean hasNext = pageNumber < totalPages;
 		boolean isFirst = pageNumber == 1;
 		boolean isLast = pageNumber.equals(totalPages);
-		int previousPageNumber = pageNumber - 1;
-		int nextPageNumber = pageNumber + 1;
-		int firstPageNumber = 1;
-		int lastPageNumber = totalPages;
-		int startSegmentPageNumber = pageNumber - (int) Math.floor((segmentCount - 1) / 2D);
-		int endSegmentPageNumber = pageNumber + (int) Math.ceil((segmentCount - 1) / 2D);
+		long previousPageNumber = pageNumber - 1;
+		long nextPageNumber = pageNumber + 1;
+		long firstPageNumber = 1;
+		long lastPageNumber = totalPages;
+		long startSegmentPageNumber = pageNumber - (int) Math.floor((segmentCount - 1) / 2D);
+		long endSegmentPageNumber = pageNumber + (int) Math.ceil((segmentCount - 1) / 2D);
 		if (startSegmentPageNumber < 1) {
 			startSegmentPageNumber = 1;
 		}
 		if (endSegmentPageNumber > totalPages) {
 			endSegmentPageNumber = totalPages;
 		}
-		List<Integer> segment = new ArrayList<Integer>();
-		for (int i = startSegmentPageNumber; i <= endSegmentPageNumber; i++) {
+		List<Long> segment = new ArrayList<Long>();
+		for (long i = startSegmentPageNumber; i <= endSegmentPageNumber; i++) {
 			segment.add(i);
 		}
 

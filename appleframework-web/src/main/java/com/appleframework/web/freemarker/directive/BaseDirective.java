@@ -43,6 +43,7 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 		return env.getVariable(name);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void setVariable(String name, Object value, Environment env) throws TemplateException {
 		Assert.hasText(name);
 		Assert.notNull(env);
@@ -53,6 +54,7 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public static void setVariables(Map<String, Object> variables, Environment env) throws TemplateException {
 		Assert.notNull(variables);
 		Assert.notNull(env);
