@@ -44,5 +44,9 @@ public class Operater implements Serializable {
     public Long getUserAsLong() {
     	return (Long)user;
     }
+    
+    public String getUserAsString() {
+    	return user.toString();
+    }
 
 }

@@ -185,6 +185,22 @@ public interface Dto extends Map<String, Object> {
 	 */
 	public Object getDefaultId();
 	
+	/**
+	 * 给id压入第一个默认status对象<br>
+	 * 为了方便存取(省去根据Key来存取和类型转换的过程)
+	 * 
+	 * @param status
+	 *            压入Dto的status对象
+	 */
+	public void setDefaultStatus(Object status);
+
+	/**
+	 * 获取第一个默认status对象<br>
+	 * 为了方便存取(省去根据Key来存取和类型转换的过程)
+	 * @param status 压入status的PO对象
+	 */
+	public Object getDefaultStatus();
+	
 	
 	
 	//

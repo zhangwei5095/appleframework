@@ -250,12 +250,22 @@ public class DefaultDto extends HashMap<String, Object> implements Dto,
 	@Override
 	public void setDefaultId(Object id) {
 		put("defaultId", id);
-
 	}
 
 	@Override
 	public Object getDefaultId() {
 		return get("defaultId");
+	}
+	
+	
+	@Override
+	public void setDefaultStatus(Object status) {
+		put("defaultStatus", status);
+	}
+
+	@Override
+	public Object getDefaultStatus() {
+		return get("defaultStatus");
 	}
 	
 	/**
