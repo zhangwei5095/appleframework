@@ -192,7 +192,7 @@ public class DefaultDto extends HashMap<String, Object> implements Dto,
 	 *            压入Dto的PO对象
 	 */
 	public Object getDefaultBo() {
-		return get("defaultPo");
+		return get("defaultBo");
 	}
 
 	/**
