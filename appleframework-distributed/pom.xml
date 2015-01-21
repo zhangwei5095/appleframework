@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>appleframework</artifactId>
 		<groupId>com.appleframework</groupId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>appleframework-distributed</artifactId>
 	<name>appleframework-distributed</name>
@@ -44,5 +44,11 @@
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
 		</dependency>
+		
+		<dependency>
+				<groupId>com.google.collections</groupId>
+				<artifactId>google-collections</artifactId>
+			</dependency>
+			
 	</dependencies>
 </project>
