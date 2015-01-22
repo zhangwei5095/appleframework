@@ -15,8 +15,6 @@ public class ServiceException extends Exception {
 
 	private Class<?> clazz;
 
-	private String method;
-
 	private String code;
 
 	private String message;
@@ -41,21 +39,19 @@ public class ServiceException extends Exception {
 		this.code = code;
 	}
 
-	public ServiceException(Class<?> clazz, String method, String code) {
+	public ServiceException(Class<?> clazz, String code) {
 		this.code = code;
 		this.clazz = clazz;
-		this.method = method;
 	}
 
-
-	public ServiceException(Class<?> clazz, String method, String code,Throwable throwable) {
+	public ServiceException(Class<?> clazz, String code, Throwable throwable) {
 		super(code, throwable);
 		this.code = code;
-		this.method = method;
 	}
 
 	public String getKey() {
-		return RSP + transform(clazz.getDeclaringClass().getName()) + "-" + method + ":" + getCode();
+		return RSP + transform(clazz.getDeclaringClass().getName()) + ":"
+				+ getCode();
 	}
 
 	public String getMessage() {
@@ -70,27 +66,19 @@ public class ServiceException extends Exception {
 		this.clazz = clazz;
 	}
 
-	public String getMethod() {
-		return method;
+	/**
+	 * 对服务名进行标准化处理：如book.upload转换为book-upload，
+	 * 
+	 * @param method
+	 * @return
+	 */
+	public String transform(String className) {
+		if (className != null) {
+			className = className.replace(".", "-");
+			return className;
+		} else {
+			return "LACK_METHOD";
+		}
 	}
-
-	public void setMethod(String method) {
-		this.method = method;
-	}
-	
-	 /**
-     * 对服务名进行标准化处理：如book.upload转换为book-upload，
-     *
-     * @param method
-     * @return
-     */
-    public String transform(String className) {
-        if(className != null){
-        	className = className.replace(".", "-");
-            return className;
-        }else{
-            return "LACK_METHOD";
-        }
-    }
 
 }
