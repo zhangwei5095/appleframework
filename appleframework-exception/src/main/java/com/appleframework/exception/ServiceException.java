@@ -13,9 +13,11 @@ public class ServiceException extends Exception {
 
 	public static final String RSP = "rsp.";
 
-	private String code;
+	private Class<?> clazz;
 
-	private String key;
+	private String method;
+
+	private String code;
 
 	private String message;
 
@@ -39,37 +41,56 @@ public class ServiceException extends Exception {
 		this.code = code;
 	}
 
-	public ServiceException(String code, String message) {
+	public ServiceException(Class<?> clazz, String method, String code) {
 		this.code = code;
-		this.message = message;
+		this.clazz = clazz;
+		this.method = method;
 	}
 
-	public ServiceException(String code, String key, String message) {
-		this.code = code;
-		this.key = key;
-		this.message = message;
-	}
 
-	public ServiceException(String message, Throwable throwable) {
-		super(message, throwable);
-	}
-
-	public ServiceException(String code, String message, Throwable throwable) {
-		super(message, throwable);
+	public ServiceException(Class<?> clazz, String method, String code,Throwable throwable) {
+		super(code, throwable);
 		this.code = code;
-		this.message = message;
+		this.method = method;
 	}
 
 	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
+		return RSP + transform(clazz.getDeclaringClass().getName()) + "-" + method + ":" + getCode();
 	}
 
 	public String getMessage() {
 		return message;
 	}
+
+	public Class<?> getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(Class<?> clazz) {
+		this.clazz = clazz;
+	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
+	}
+	
+	 /**
+     * 对服务名进行标准化处理：如book.upload转换为book-upload，
+     *
+     * @param method
+     * @return
+     */
+    public String transform(String className) {
+        if(className != null){
+        	className = className.replace(".", "-");
+            return className;
+        }else{
+            return "LACK_METHOD";
+        }
+    }
 
 }
