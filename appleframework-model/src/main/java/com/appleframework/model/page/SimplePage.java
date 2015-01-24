@@ -47,6 +47,21 @@ public class SimplePage implements Paginable, Serializable {
 		setPageNo(pageNo);
 		adjustPageNo();
 	}
+	
+	/**
+	 * 构造器
+	 * 
+	 * @param pageNo
+	 *            页码
+	 * @param pageSize
+	 *            每页几条数据
+	 * @param totalCount
+	 *            总共几条数据
+	 */
+	public SimplePage(long pageNo, long pageSize) {
+		setPageSize(pageSize);
+		setPageNo(pageNo);
+	}
 
 	/**
 	 * 调整页码，使不超过最大页数

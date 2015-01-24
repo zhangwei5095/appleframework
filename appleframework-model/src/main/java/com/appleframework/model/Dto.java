@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import com.appleframework.model.page.Pagination;
@@ -201,7 +202,9 @@ public interface Dto extends Map<String, Object> {
 	 */
 	public Object getDefaultStatus();
 	
-	
+	public void setDefaultLocale(Locale locale);
+
+	public Locale getDefaultLocale();
 	
 	//
 	public void addParameters(Object... pairs);

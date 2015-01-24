@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -226,6 +227,21 @@ public class DefaultDto extends HashMap<String, Object> implements Dto,
 	public Operater getDefaultOperater() {
 		return (Operater) get("defaultOperater");
 	}
+	
+	@Override
+	public void setDefaultLocale(Locale locale) {
+		put("defaultLocale", locale);
+	}
+
+	@Override
+	public Locale getDefaultLocale() {
+		Object object = get("defaultLocale");
+		if(null == object)
+			return Locale.CHINA;
+		else
+			return (Locale)object;
+	}
+	
 
 	@Override
 	public String getCode() {

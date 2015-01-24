@@ -26,7 +26,7 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 *            每页几条数据
 	 */
 	public Pagination(long pageNo, long pageSize) {
-		super(pageNo, pageSize, 0);
+		super(pageNo, pageSize);
 	}
 
 	/**
