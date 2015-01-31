@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+	<parent>
+    	<groupId>org.sonatype.oss</groupId>
+    	<artifactId>oss-parent</artifactId>
+    	<version>7</version>
+	</parent>
 	<groupId>com.appleframework</groupId>
 	<artifactId>appleframework</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>appleframework</name>
 	<url>http://mvnrepo.appleframework.com</url>
+	
+	<scm>
+        <connection>scm:git:git@github.com:xushaomin/appleframework.git</connection>
+        <developerConnection>scm:git:git@github.com:xushaomin/appleframework.git</developerConnection>
+        <url>git@github.com:xushaomin/appleframework.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>xushaomin</id>
+            <name>xushaomin</name>
+            <email>xushaomin@foxmail.com</email>
+        </developer>
+    </developers>
+	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.version>0.0.1-SNAPSHOT</project.version>
+		<project.version>0.0.3.RELEASE</project.version>
 		<appleframework.version>${project.version}</appleframework.version>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<java.version>1.6</java.version>
@@ -64,8 +83,10 @@
 
 
 		<sitemesh.version>2.4.2</sitemesh.version>
+		<!-- 
 		<freemarker.version>[2.3.18,2.4)</freemarker.version>
-
+		 -->
+		<freemarker.version>2.3.21</freemarker.version>
 		<shiro.version>1.2.1</shiro.version>
 
 		<jersey.version>1.2</jersey.version>
@@ -118,7 +139,7 @@
 			<dependency>
 				<groupId>com.googlecode.xmemcached</groupId>
 				<artifactId>xmemcached</artifactId>
-				<version>1.3.5</version>
+				<version>2.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.geronimo.specs</groupId>
@@ -930,36 +951,47 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>apple-repos</id>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/groups/public</url>
+			<url>http://113.98.254.39:8787/nexus/content/groups/public</url>
 		</pluginRepository>
 	</pluginRepositories>
 
+	
 	<distributionManagement>
 		<repository>
 			<id>apple-releases</id>
 			<name>Apple Releases Repository</name>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/repositories/releases</url>
+			<url>http://mvnrepo.appleframework.com/nexus/content/repositories/releases</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>apple-snapshots</id>
 			<name>Apple Snapshots Repository</name>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/repositories/snapshots</url>
+			<url>http://mvnrepo.appleframework.com/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
+	 
+	 <!-- 
+	 <distributionManagement>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Releases Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/releases</url>
+		</repository>
 
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Snapshots Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	-->
+	
 	<modules>
 		<module>appleframework-core</module>
 		<module>appleframework-model</module>
-		<module>appleframework-config</module>
     	<module>appleframework-distributed</module>
     	<module>appleframework-exception</module>
-    	<module>appleframework-persistent-hibernate</module>
-		<module>appleframework-persistent-mybatis</module>
     	<module>appleframework-web</module>
-    	<module>appleframework-starter</module>
-    	<module>appleframework-server</module>
-		<module>appleframework-mq</module>
-    <module>appleframework-rop</module>
+    	<module>appleframework-orm</module>
   </modules>
 </project>
