@@ -23,7 +23,7 @@ import java.util.Locale;
  * @author 徐少敏
  * @version 1.0
  */
-public class BaseException extends Exception {
+public class AppleException extends Exception {
 
 	private static final long serialVersionUID = -4379801359412979859L;
 
@@ -40,10 +40,18 @@ public class BaseException extends Exception {
     @XmlElement(name = "subError")
     protected List<AppleSubError> subErrors;
 
-    public BaseException() {
+    public AppleException() {
+    }
+    
+    public AppleException(Throwable throwable) {
+    	super(throwable);
     }
 
-    public BaseException(AppleMainError mainError) {
+    public AppleException(String message, Throwable throwable) {
+    	super(message, throwable);
+    }
+    
+    public AppleException(AppleMainError mainError) {
         this.code = mainError.getCode();
         this.message = mainError.getMessage();
         this.solution = mainError.getSolution();

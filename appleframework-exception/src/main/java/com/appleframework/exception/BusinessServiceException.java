@@ -26,7 +26,7 @@ import java.util.Locale;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "error")
-public class BusinessServiceException extends BaseException {
+public class BusinessServiceException extends AppleException {
 
 	private static final long serialVersionUID = 1500030976495988681L;
 

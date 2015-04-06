@@ -57,9 +57,13 @@ public class PaginationDirective extends BaseDirective {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body) throws TemplateException, IOException {
 		String pattern = (String)DirectiveUtil.getObjectParameter(PATTERN_PARAMETER_NAME, params);
-		Long pageNumber = (Long)DirectiveUtil.getObjectParameter(PAGE_NUMBER_PARAMETER_NAME, params);
-		Long totalPages = (Long)DirectiveUtil.getObjectParameter(TOTAL_PAGES_PARAMETER_NAME, params);
-		Long segmentCount = (Long)DirectiveUtil.getObjectParameter(SEGMENT_COUNT_PARAMETER_NAME, params);
+		Object pageNumberObject = DirectiveUtil.getObjectParameter(PAGE_NUMBER_PARAMETER_NAME, params);
+		Object totalPagesObject = DirectiveUtil.getObjectParameter(TOTAL_PAGES_PARAMETER_NAME, params);
+		Object segmentCountObject = DirectiveUtil.getObjectParameter(SEGMENT_COUNT_PARAMETER_NAME, params);
+		
+		Long pageNumber = Long.parseLong(pageNumberObject.toString());
+		Long totalPages = Long.parseLong(totalPagesObject.toString());
+		Long segmentCount = 5L;
 
 		if (pageNumber == null || pageNumber < 1) {
 			pageNumber = 1L;
@@ -67,9 +71,14 @@ public class PaginationDirective extends BaseDirective {
 		if (totalPages == null || totalPages < 1) {
 			totalPages = 1L;
 		}
-		if (segmentCount == null || segmentCount < 1) {
-			segmentCount = 5L;
+		 
+		if (null != segmentCountObject) {
+			segmentCount = Long.parseLong(segmentCountObject.toString());
+			if(segmentCount < 1) {
+				segmentCount = 5L;
+			}
 		}
+		
 		boolean hasPrevious = pageNumber > 1;
 		boolean hasNext = pageNumber < totalPages;
 		boolean isFirst = pageNumber == 1;

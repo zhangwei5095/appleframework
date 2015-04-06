@@ -26,7 +26,7 @@ import java.util.Locale;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "error")
-public class TimeoutException extends BaseException {
+public class TimeoutException extends AppleException {
 
 	private static final long serialVersionUID = -4131567927036108840L;
 

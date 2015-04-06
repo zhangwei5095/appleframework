@@ -27,7 +27,7 @@ import java.util.Locale;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "error")
-public class NotExistException extends BaseException {
+public class NotExistException extends AppleException {
 
 	private static final long serialVersionUID = -2467323337391884616L;
 	

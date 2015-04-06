@@ -24,7 +24,7 @@ import java.util.Locale;
  * @version 1.0
  */
 @SuppressWarnings("rawtypes")
-public class ServiceUnavailableException extends BaseException {
+public class ServiceUnavailableException extends AppleException {
 
 	private static final long serialVersionUID = -3259477976501742491L;
 
@@ -58,7 +58,7 @@ public class ServiceUnavailableException extends BaseException {
         String errorCodeKey = RSP + transform(serviceName) + SERVICE_UNAVAILABLE;
         AppleSubError subError = AppleSubErrors.getSubError(errorCodeKey,
                 AppleSubErrorType.RSP_SERVICE_UNAVAILABLE.value(),
-                Locale.CHINA, serviceName,"NONE","NONE");
+                Locale.CHINA, serviceName,"NONE", "NONE");
         ArrayList<AppleSubError> subErrors = new ArrayList<AppleSubError>();
         subErrors.add(subError);
 
