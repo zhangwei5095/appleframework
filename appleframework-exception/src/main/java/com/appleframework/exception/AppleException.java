@@ -134,6 +134,24 @@ public class AppleException extends Exception {
 			return clazz.getName();
 		}
 	}
+    
+	public String getSubErrorMessage() {
+		if(null != subErrors && subErrors.size() > 0) {
+			return subErrors.get(0).getMessage();
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public String getSubErrorCode() {
+		if(null != subErrors && subErrors.size() > 0) {
+			return subErrors.get(0).getCode();
+		}
+		else {
+			return null;
+		}
+	}
 
 }
 

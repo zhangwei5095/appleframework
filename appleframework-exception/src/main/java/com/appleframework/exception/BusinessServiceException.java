@@ -30,7 +30,7 @@ public class BusinessServiceException extends AppleException {
 
 	private static final long serialVersionUID = 1500030976495988681L;
 
-	private static final String RSV = "rsv.";
+	private static final String RSP = "rsp.";
 
     private static final String SERVICE_ERROR = "-error:";
 
@@ -56,7 +56,7 @@ public class BusinessServiceException extends AppleException {
     		locale = Locale.CHINA;
         AppleMainError mainError = AppleMainErrors.getError(AppleMainErrorType.BUSINESS_LOGIC_ERROR,locale);
         serviceName = transform(serviceName);
-        String subErrorCode = RSV + serviceName + SERVICE_ERROR + errorCode;
+        String subErrorCode = RSP + serviceName + SERVICE_ERROR + errorCode;
         AppleSubError subError = AppleSubErrors.getSubError(subErrorCode, subErrorCode, locale, params);
         ArrayList<AppleSubError> subErrors = new ArrayList<AppleSubError>();
         subErrors.add(subError);
@@ -82,7 +82,32 @@ public class BusinessServiceException extends AppleException {
     	String serviceName = transform(getInterfaceName(clazz));
         AppleMainError mainError = AppleMainErrors.getError(AppleMainErrorType.BUSINESS_LOGIC_ERROR, locale, serviceName);
         
-        String subErrorCode = RSV + serviceName + SERVICE_ERROR + errorCode;
+        String subErrorCode = RSP + serviceName + SERVICE_ERROR + errorCode;
+        AppleSubError subError = AppleSubErrors.getSubError(subErrorCode, subErrorCode, locale, params);
+        ArrayList<AppleSubError> subErrors = new ArrayList<AppleSubError>();
+        subErrors.add(subError);
+
+        setMainError(mainError);
+        setSubErrors(subErrors);
+    }
+    
+    /**
+     * 服务发生错误的错误响应，错误码的格式为：rsv.***-service-error:###,假设
+     * serviceName为file.upload，error_code为INVLIAD_USERNAME_OR_PASSWORD，则错误码会被格式化为：
+     * rsv.file-upload-service-error:INVLIAD_USERNAME_OR_PASSWORD
+     *
+     * @param context     请求上下文
+     * @param errorCode   错误的代码，如INVLIAD_USERNAME_OR_PASSWORD,在错误码的后面，一般为大写或数字。
+     * @param params      错误信息的参数，如错误消息的值为this is a {0} error，则传入的参数为big时，错误消息格式化为：
+     *                    this is a big error
+     */
+    @SuppressWarnings("rawtypes")
+	public BusinessServiceException(Class clazz, String errorCode, Object... params) {
+    	Locale locale = Locale.CHINA;
+    	String serviceName = transform(getInterfaceName(clazz));
+        AppleMainError mainError = AppleMainErrors.getError(AppleMainErrorType.BUSINESS_LOGIC_ERROR, locale, serviceName);
+        
+        String subErrorCode = RSP + serviceName + SERVICE_ERROR + errorCode;
         AppleSubError subError = AppleSubErrors.getSubError(subErrorCode, subErrorCode, locale, params);
         ArrayList<AppleSubError> subErrors = new ArrayList<AppleSubError>();
         subErrors.add(subError);

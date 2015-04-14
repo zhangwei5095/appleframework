@@ -6,7 +6,8 @@ package com.appleframework.exception.error;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.NoSuchMessageException;
-import org.springframework.context.support.MessageSourceAccessor;
+
+import com.appleframework.exception.utils.MessageSourceUtility;
 
 import java.util.EnumMap;
 import java.util.Locale;
@@ -44,13 +45,8 @@ public class AppleSubErrors {
                 AppleSubErrorType.RSV_INVALID_PERMISSION, AppleMainErrorType.INSUFFICIENT_RSV_PERMISSIONS);
     }
 
-    private static MessageSourceAccessor messageSourceAccessor;
     private static final String PARAM_1 = "xxx";
     private static final String PARAM_2 = "yyy";
-
-    public static void setErrorMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {
-        AppleSubErrors.messageSourceAccessor = messageSourceAccessor;
-    }
 
     /**
      * 获取对应子错误的主错误
@@ -84,7 +80,8 @@ public class AppleSubErrors {
      */
     public static AppleSubError getSubError(String subErrorCode, String subErrorKey, Locale locale, Object... params) {
         try {
-            String parsedSubErrorMessage = messageSourceAccessor.getMessage(subErrorKey, params, locale);
+            String parsedSubErrorMessage = MessageSourceUtility.getMessageSourceAccessor()
+            		.getMessage(subErrorKey, params, locale);
             return new AppleSubError(subErrorCode, parsedSubErrorMessage);
         } catch (NoSuchMessageException e) {
             logger.error("不存在对应的错误键：{" + subErrorCode + "}，请检查是否正确配置了应用的错误资源，" +
