@@ -87,6 +87,26 @@ public class ServiceUnavailableException extends AppleException {
         setMainError(mainError);
     }
     
+    public ServiceUnavailableException(Class clazz, Throwable throwable) {
+    	Locale locale = Locale.CHINA;
+        AppleMainError mainError = AppleSubErrors.getMainError(AppleSubErrorType.RSP_SERVICE_UNAVAILABLE, locale);
+        ArrayList<AppleSubError> subErrors = new ArrayList<AppleSubError>();
+        String serviceName = getInterfaceName(clazz);
+        String errorCodeKey = RSP + transform(serviceName) + SERVICE_UNAVAILABLE;
+        Throwable srcThrowable = throwable;
+        if(throwable.getCause() != null){
+            srcThrowable = throwable.getCause();
+        }
+        AppleSubError subError = AppleSubErrors.getSubError(errorCodeKey,
+                AppleSubErrorType.RSP_SERVICE_UNAVAILABLE.value(),
+                locale,
+                serviceName, srcThrowable.getClass().getName(),getThrowableInfo(throwable));
+        subErrors.add(subError);
+
+        setSubErrors(subErrors);
+        setMainError(mainError);
+    }
+    
     private String getThrowableInfo(Throwable throwable) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(1024);
         PrintStream printStream = new PrintStream(outputStream);
