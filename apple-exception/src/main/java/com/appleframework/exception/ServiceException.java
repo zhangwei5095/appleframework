@@ -13,6 +13,8 @@ public class ServiceException extends AppleException {
 	private static final long serialVersionUID = 7696865849245536841L;
 
 	public static final String RSP = "rsp.";
+	
+	public static final String ERROR = "-error:";
 
 	private String clazz;
 	
@@ -68,7 +70,7 @@ public class ServiceException extends AppleException {
 		if(null == clazz)
 			return RSP + "." + code;
 		else
-			return RSP + transform(clazz) + ":" + code;
+			return RSP + transform(clazz) + ERROR + ":" + code;
 	}
 
 	public String getMessage() {
