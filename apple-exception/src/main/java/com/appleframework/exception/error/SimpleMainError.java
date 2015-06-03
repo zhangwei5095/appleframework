@@ -4,6 +4,7 @@
  */
 package com.appleframework.exception.error;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import java.util.List;
  * @author 徐少敏
  * @version 1.0
  */
-public class SimpleMainError implements AppleMainError {
+public class SimpleMainError implements AppleMainError, Serializable {
+
+	private static final long serialVersionUID = -1417968672685189777L;
 
 	private String code;
 

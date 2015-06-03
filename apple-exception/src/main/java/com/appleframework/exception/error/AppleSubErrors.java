@@ -9,6 +9,7 @@ import org.springframework.context.NoSuchMessageException;
 
 import com.appleframework.exception.utils.MessageSourceUtility;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Locale;
 
@@ -20,9 +21,11 @@ import java.util.Locale;
  * @author 徐少敏
  * @version 1.0
  */
-public class AppleSubErrors {
+public class AppleSubErrors implements Serializable {
 
-    protected static Logger logger = Logger.getLogger(AppleSubErrors.class.getName());
+	private static final long serialVersionUID = 7566195425214797570L;
+
+	protected static Logger logger = Logger.getLogger(AppleSubErrors.class.getName());
 
     //子错误和主错误对应Map,key为子错误代码，值为主错误代码
     private static final EnumMap<AppleSubErrorType, AppleMainErrorType> SUBERROR_MAINERROR_MAPPINGS =

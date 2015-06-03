@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 
 import com.appleframework.exception.utils.MessageSourceUtility;
 
+import java.io.Serializable;
 import java.util.Locale;
 
 /**
@@ -20,9 +21,11 @@ import java.util.Locale;
  * @author 徐少敏
  * @version 1.0
  */
-public class AppleMainErrors {
+public class AppleMainErrors implements Serializable {
 
-    protected static Logger logger = Logger.getLogger(AppleMainErrors.class.getName());
+	private static final long serialVersionUID = 841768290283360292L;
+
+	protected static Logger logger = Logger.getLogger(AppleMainErrors.class.getName());
 
     private static final String ERROR_CODE_PREFIX = "ERROR_";
     private static final String ERROR_SOLUTION_SUBFIX = "_SOLUTION";

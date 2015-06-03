@@ -4,6 +4,8 @@
  */
 package com.appleframework.exception.error;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.*;
 
 /**
@@ -16,7 +18,9 @@ import javax.xml.bind.annotation.*;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "subError")
-public class AppleSubError {
+public class AppleSubError implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@XmlAttribute
 	private String code;
