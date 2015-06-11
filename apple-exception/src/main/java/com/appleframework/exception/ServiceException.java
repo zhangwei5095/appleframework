@@ -40,6 +40,11 @@ public class ServiceException extends AppleException {
 		this.code = code;
 	}
 	
+	public ServiceException(String code, String message) {
+		this.code = code;
+		this.message = message;
+	}
+	
 	public ServiceException(String code, Throwable throwable) {
 		super(throwable);
 		super.code = code;
@@ -70,7 +75,7 @@ public class ServiceException extends AppleException {
 		if(null == clazz)
 			return RSP + "." + code;
 		else
-			return RSP + transform(clazz) + ERROR + ":" + code;
+			return RSP + transform(clazz) + ERROR + code;
 	}
 
 	public String getMessage() {
