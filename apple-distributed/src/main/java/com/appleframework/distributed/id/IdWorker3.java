@@ -2,11 +2,11 @@ package com.appleframework.distributed.id;
 
 import org.apache.log4j.Logger;
 
-public class IdWorker2 {
+public class IdWorker3 {
 	
-    protected static final Logger LOG = Logger.getLogger(IdWorker2.class);
+    protected static final Logger LOG = Logger.getLogger(IdWorker3.class);
 
-	private final long workerId;
+	private long workerId;
 	private final static long twepoch = 1288834974657L;
 	private long sequence = 0L;
 	private final static long workerIdBits = 4L;
@@ -19,9 +19,11 @@ public class IdWorker2 {
 	public final static long sequenceMask = -1L ^ -1L << sequenceBits;
 
 	private long lastTimestamp = -1L;
+	
+	private IWorkId iworkId;
 
-	public IdWorker2(final long workerId) {
-		super();
+	public void init() {
+		long workerId = iworkId.getWorkId();
 		if (workerId > maxWorkerId || workerId < 0) {
 			throw new IllegalArgumentException(
 					String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
@@ -74,15 +76,8 @@ public class IdWorker2 {
 		return System.currentTimeMillis();
 	}
 
-	public static void main(String[] args) {
-		IdWorker2 worker = new IdWorker2(2);
-		for (int i = 0; i < 10; i++) {
-			System.out.println(worker.nextId());
-		}
-		IdWorker2 worker2 = new IdWorker2(293827393);
-		for (int i = 0; i < 10; i++) {
-			System.out.println(worker2.nextId());
-		}
+	public void setIworkId(IWorkId iworkId) {
+		this.iworkId = iworkId;
 	}
 
 }
