@@ -4,7 +4,7 @@ import java.net.SocketException;
 
 import com.appleframework.distributed.utils.IpUtility;
 
-public class ApplicationId implements IWorkId {
+public class ApplicationIdGenerate implements IWorkIdGenerate {
 
 	private String applicationName;
 
@@ -13,7 +13,7 @@ public class ApplicationId implements IWorkId {
 	}
 
 	@Override
-	public int getWorkId() {
+	public int genWorkId() {
 		String ip = "127.0.0.1";
 		try {
 			ip = IpUtility.getIp();
