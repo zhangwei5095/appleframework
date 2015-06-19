@@ -2,9 +2,9 @@ package com.appleframework.distributed.id;
 
 import org.apache.log4j.Logger;
 
-import com.appleframework.distributed.id.work.IWorkId;
+import com.appleframework.distributed.id.work.IWorkIdGenerate;
 
-public class IdWorker3 {
+public class IdWorker3 implements IdWorker {
 	
     protected static final Logger LOG = Logger.getLogger(IdWorker3.class);
 
@@ -22,10 +22,10 @@ public class IdWorker3 {
 
 	private long lastTimestamp = -1L;
 	
-	private IWorkId iworkId;
+	private IWorkIdGenerate workIdGenerate;
 
 	public void init() {
-		long workerId = iworkId.getWorkId();
+		long workerId = workIdGenerate.genWorkId();
 		if (workerId > maxWorkerId || workerId < 0) {
 			throw new IllegalArgumentException(
 					String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
@@ -78,8 +78,8 @@ public class IdWorker3 {
 		return System.currentTimeMillis();
 	}
 
-	public void setIworkId(IWorkId iworkId) {
-		this.iworkId = iworkId;
+	public void setWorkIdGenerate(IWorkIdGenerate workIdGenerate) {
+		this.workIdGenerate = workIdGenerate;
 	}
 
 }

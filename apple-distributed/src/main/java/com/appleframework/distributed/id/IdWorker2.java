@@ -2,7 +2,7 @@ package com.appleframework.distributed.id;
 
 import org.apache.log4j.Logger;
 
-public class IdWorker2 {
+public class IdWorker2 implements IdWorker {
 	
     protected static final Logger LOG = Logger.getLogger(IdWorker2.class);
 
