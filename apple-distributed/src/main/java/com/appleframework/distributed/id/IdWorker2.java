@@ -25,8 +25,7 @@ public class IdWorker2 implements IdWorker {
 	public IdWorker2(final long workerId) {
 		super();
 		if (workerId > maxWorkerId || workerId < 0) {
-			throw new IllegalArgumentException(
-					String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
+			throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
 		}
 		this.workerId = workerId;
 	}
@@ -45,12 +44,11 @@ public class IdWorker2 implements IdWorker {
 		if (timestamp < this.lastTimestamp) {
 			try {
 				LOG.error(String.format("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp));
-				throw new Exception(
-						String.format(
+				throw new Exception(String.format(
 								"Clock moved backwards.  Refusing to generate id for %d milliseconds",
 								this.lastTimestamp - timestamp));
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOG.error(e.getMessage());
 			}
 		}
 

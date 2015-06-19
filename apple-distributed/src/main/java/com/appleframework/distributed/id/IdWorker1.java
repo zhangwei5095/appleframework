@@ -83,34 +83,33 @@ public class IdWorker1 implements IdWorker {
     }
     
 	public synchronized long nextId() {
-		synchronized (this) {
-			long timestamp = timeGen();
-		    	//时间错误
-		        if (timestamp < lastTimestamp) {
-		            LOG.error(String.format("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp));
-		            throw new RuntimeException(
-		            		String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", 
-		            				lastTimestamp - timestamp));
-		        }
+		long timestamp = timeGen();
+		// 时间错误
+		if (timestamp < lastTimestamp) {
+			LOG.error(String.format("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp));
+			throw new RuntimeException(
+					String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds",
+							lastTimestamp - timestamp));
+		}
 
-		        if (lastTimestamp == timestamp) {
-		        	//当前毫秒内，则+1
-		            sequence = (sequence + 1) & sequenceMask;
-		            if (sequence == 0) {
-		            	//当前毫秒内计数满了，则等待下一秒
-		                timestamp = tilNextMillis(lastTimestamp);
-		            }
-		        } else {
-		            sequence = 0L;
-		        }
-		        
-		        lastTimestamp = timestamp;
-		        //ID偏移组合生成最终的ID，并返回ID
-		        return ((timestamp - twepoch) << timestampLeftShift) 
-		        			| (datacenterId << datacenterIdShift) 
-		        				| (workerId << workerIdShift) | sequence;
-		 }
-    }
+		if (lastTimestamp == timestamp) {
+			// 当前毫秒内，则+1
+			sequence = (sequence + 1) & sequenceMask;
+			if (sequence == 0) {
+				// 当前毫秒内计数满了，则等待下一秒
+				timestamp = tilNextMillis(lastTimestamp);
+			}
+		} else {
+			sequence = 0L;
+		}
+
+		lastTimestamp = timestamp;
+		// ID偏移组合生成最终的ID，并返回ID
+		return ((timestamp - twepoch) << timestampLeftShift)
+				| (datacenterId << datacenterIdShift)
+				| (workerId << workerIdShift) | sequence;
+
+	}
 
     //等待下一个毫秒的到来
     protected long tilNextMillis(long lastTimestamp) {
