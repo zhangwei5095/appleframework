@@ -19,7 +19,8 @@ public class ApplicationIdGenerate implements IWorkIdGenerate {
 			ip = IpUtility.getIp();
 		} catch (SocketException e) {
 		}
-		return (ip + "_" + applicationName).hashCode();
+		int hasCode = (ip + "_" + applicationName).hashCode();
+		return Math.abs(hasCode);
 	}
 
 }
