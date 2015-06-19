@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
  * 核心代码就是毫秒级时间41位+机器ID 10位+毫秒内序列12位
  * 
  */
-public class IdWorker1 extends IdWorker {
+public class IdWorker1 implements IdWorker {
     
     protected static final Logger LOG = Logger.getLogger(IdWorker1.class);
     
@@ -81,33 +81,35 @@ public class IdWorker1 extends IdWorker {
         				"worker id bits %d, sequence bits %d, workerid %d", timestampLeftShift, 
         						datacenterIdBits, workerIdBits, sequenceBits, workerId));
     }
+    
+	public synchronized long nextId() {
+		synchronized (this) {
+			long timestamp = timeGen();
+		    	//时间错误
+		        if (timestamp < lastTimestamp) {
+		            LOG.error(String.format("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp));
+		            throw new RuntimeException(
+		            		String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", 
+		            				lastTimestamp - timestamp));
+		        }
 
-    public synchronized long nextId() {
-        long timestamp = timeGen();
-        //时间错误
-        if (timestamp < lastTimestamp) {
-            LOG.error(String.format("clock is moving backwards.  Rejecting requests until %d.", lastTimestamp));
-            throw new RuntimeException(
-            		String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", 
-            				lastTimestamp - timestamp));
-        }
-
-        if (lastTimestamp == timestamp) {
-        	//当前毫秒内，则+1
-            sequence = (sequence + 1) & sequenceMask;
-            if (sequence == 0) {
-            	//当前毫秒内计数满了，则等待下一秒
-                timestamp = tilNextMillis(lastTimestamp);
-            }
-        } else {
-            sequence = 0L;
-        }
-        
-        lastTimestamp = timestamp;
-        //ID偏移组合生成最终的ID，并返回ID
-        return ((timestamp - twepoch) << timestampLeftShift) 
-        			| (datacenterId << datacenterIdShift) 
-        				| (workerId << workerIdShift) | sequence;
+		        if (lastTimestamp == timestamp) {
+		        	//当前毫秒内，则+1
+		            sequence = (sequence + 1) & sequenceMask;
+		            if (sequence == 0) {
+		            	//当前毫秒内计数满了，则等待下一秒
+		                timestamp = tilNextMillis(lastTimestamp);
+		            }
+		        } else {
+		            sequence = 0L;
+		        }
+		        
+		        lastTimestamp = timestamp;
+		        //ID偏移组合生成最终的ID，并返回ID
+		        return ((timestamp - twepoch) << timestampLeftShift) 
+		        			| (datacenterId << datacenterIdShift) 
+		        				| (workerId << workerIdShift) | sequence;
+		 }
     }
 
     //等待下一个毫秒的到来
@@ -128,5 +130,9 @@ public class IdWorker1 extends IdWorker {
 		for (int i = 0; i < 1000; i++) {
 			System.out.println(worker.nextId());
 		}
+		System.out.println(worker.maxWorkerId);
+		System.out.println(worker.maxDatacenterId);
 	}
+    
+    
 }

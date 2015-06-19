@@ -1,8 +1,11 @@
 package com.appleframework.distributed.id;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.log4j.Logger;
 
-public class IdWorker2 extends IdWorker {
+public class IdWorker2 implements IdWorker {
 	
     protected static final Logger LOG = Logger.getLogger(IdWorker2.class);
 
@@ -10,8 +13,7 @@ public class IdWorker2 extends IdWorker {
 	private final static long twepoch = 1288834974657L;
 	private long sequence = 0L;
 	private final static long workerIdBits = 4L;
-	//public final static long maxWorkerId = -1L ^ -1L << workerIdBits;
-	public final static long maxWorkerId = Integer.MAX_VALUE;
+	public final static long maxWorkerId = -1L ^ -1L << workerIdBits;
 	private final static long sequenceBits = 10L;
 
 	private final static long workerIdShift = sequenceBits;
@@ -46,20 +48,19 @@ public class IdWorker2 extends IdWorker {
 				throw new Exception(
 						String.format(
 								"Clock moved backwards.  Refusing to generate id for %d milliseconds",
-									this.lastTimestamp - timestamp));
+								this.lastTimestamp - timestamp));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
 		this.lastTimestamp = timestamp;
-		long nextId = ((timestamp - twepoch << timestampLeftShift)) 
-				| (this.workerId << workerIdShift) 
-					| (this.sequence);
+		long nextId = ((timestamp - twepoch << timestampLeftShift)) | (this.workerId << workerIdShift) | (this.sequence);
 		LOG.info("timestamp:" + timestamp + ",timestampLeftShift:"
 				+ timestampLeftShift + ",nextId:" + nextId + ",workerId:"
 				+ workerId + ",sequence:" + sequence);
 		return nextId;
+
 	}
 
 	private long tilNextMillis(final long lastTimestamp) {
@@ -75,14 +76,13 @@ public class IdWorker2 extends IdWorker {
 	}
 
 	public static void main(String[] args) {
-		IdWorker2 worker = new IdWorker2(2);
-		for (int i = 0; i < 10; i++) {
-			System.out.println(worker.nextId());
+		IdWorker2 worker = new IdWorker2(14);
+		Set<Long> sets = new HashSet<Long>();
+		for (int i = 1; i <= 100000; i++) {
+			long id = worker.nextId();
+			sets.add(id);
 		}
-		IdWorker2 worker2 = new IdWorker2(293827393);
-		for (int i = 0; i < 10; i++) {
-			System.out.println(worker2.nextId());
-		}
+		System.out.println(sets.size());
 	}
 
 }

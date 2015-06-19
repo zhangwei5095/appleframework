@@ -1,7 +1,7 @@
 package com.appleframework.distributed.id;
 
-public abstract class IdWorker {
+public interface IdWorker {
 	
-    public abstract long nextId();
+    public long nextId();
     
 }
