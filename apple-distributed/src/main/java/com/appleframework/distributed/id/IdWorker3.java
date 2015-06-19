@@ -2,6 +2,8 @@ package com.appleframework.distributed.id;
 
 import org.apache.log4j.Logger;
 
+import com.appleframework.distributed.id.work.IWorkId;
+
 public class IdWorker3 {
 	
     protected static final Logger LOG = Logger.getLogger(IdWorker3.class);
