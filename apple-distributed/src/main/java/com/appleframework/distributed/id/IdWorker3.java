@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.appleframework.distributed.id.work.IWorkIdGenerate;
 
-public class IdWorker3 implements IdWorker {
+public class IdWorker3 extends IdWorker {
 	
     protected static final Logger LOG = Logger.getLogger(IdWorker3.class);
 

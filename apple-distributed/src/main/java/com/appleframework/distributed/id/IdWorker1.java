@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
  * 核心代码就是毫秒级时间41位+机器ID 10位+毫秒内序列12位
  * 
  */
-public class IdWorker1 implements IdWorker {
+public class IdWorker1 extends IdWorker {
     
     protected static final Logger LOG = Logger.getLogger(IdWorker1.class);
     
