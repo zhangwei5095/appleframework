@@ -2,7 +2,7 @@ package com.appleframework.model;
 
 import java.io.Serializable;
 
-public class Operater implements Serializable {
+public class Operator implements Serializable {
 
 	private static final long serialVersionUID = -3380428902609264726L;
 
@@ -10,15 +10,15 @@ public class Operater implements Serializable {
 
 	protected Short type; // 操作者人
 	
-	public Operater() {}
+	public Operator() {}
 	
-	public Operater(Short type, Object user) {
+	public Operator(Short type, Object user) {
 		this.type = type;
 		this.user = user;
 	}
 	
-	public static Operater creat(Short type, Object user) {
-		return new Operater(type, user);
+	public static Operator creat(Short type, Object user) {
+		return new Operator(type, user);
 	}
 
 	public Object getUser() {

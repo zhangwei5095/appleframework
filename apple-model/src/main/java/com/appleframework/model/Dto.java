@@ -137,20 +137,20 @@ public interface Dto extends Map<String, Object> {
 	public Pagination getDefaultPage();
 	
 	/**
-	 * 给Operater压入第一个默认Operater对象<br>
+	 * 给Operator压入第一个默认Operator对象<br>
 	 * 为了方便存取(省去根据Key来存取和类型转换的过程)
 	 * 
-	 * @param Operater
-	 *            压入Dto的Operater对象
+	 * @param Operator
+	 *            压入Dto的Operator对象
 	 */
-	public void setDefaultOperater(Operater operater);
+	public void setDefaultOperator(Operator operator);
 
 	/**
-	 * 获取第一个默认Operater对象<br>
+	 * 获取第一个默认Operator对象<br>
 	 * 为了方便存取(省去根据Key来存取和类型转换的过程)
-	 * @param Operater 压入Operater的PO对象
+	 * @param Operator 压入Operator的PO对象
 	 */
-	public Operater getDefaultOperater();	
+	public Operator getDefaultOperator();	
 	
 	
 	/**

@@ -219,13 +219,13 @@ public class DefaultDto extends HashMap<String, Object> implements Dto,
 	}
 
 	@Override
-	public void setDefaultOperater(Operater operater) {
-		put("defaultOperater", operater);
+	public void setDefaultOperator(Operator operator) {
+		put("defaultOperator", operator);
 	}
 
 	@Override
-	public Operater getDefaultOperater() {
-		return (Operater) get("defaultOperater");
+	public Operator getDefaultOperator() {
+		return (Operator) get("defaultOperator");
 	}
 	
 	@Override
