@@ -8,16 +8,16 @@ public class Operator implements Serializable {
 
 	protected Object user; // 操作者用户名称或者ID
 
-	protected Short type; // 操作者人
+	protected OperatorType type; // 操作者人
 	
 	public Operator() {}
 	
-	public Operator(Short type, Object user) {
+	public Operator(OperatorType type, Object user) {
 		this.type = type;
 		this.user = user;
 	}
 	
-	public static Operator creat(Short type, Object user) {
+	public static Operator creat(OperatorType type, Object user) {
 		return new Operator(type, user);
 	}
 
@@ -29,11 +29,11 @@ public class Operator implements Serializable {
 		this.user = user;
 	}
 
-	public Short getType() {
+	public OperatorType getType() {
 		return type;
 	}
 
-	public void setType(Short type) {
+	public void setType(OperatorType type) {
 		this.type = type;
 	}
 	
