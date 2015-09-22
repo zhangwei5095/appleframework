@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>appleframework</artifactId>
 		<groupId>com.appleframework</groupId>
-		<version>0.1.2.RELEASE</version>
+		<version>0.1.3.RELEASE</version>
 	</parent>
 	<artifactId>apple-core</artifactId>
 	<name>apple-core</name>

@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>com.appleframework</groupId>
 	<artifactId>appleframework</artifactId>
-	<version>0.1.2.RELEASE</version>
+	<version>0.1.3.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>appleframework</name>
@@ -31,73 +31,56 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.version>0.1.2.RELEASE</project.version>
+		<project.version>0.1.3.RELEASE</project.version>
 		<appleframework.version>${project.version}</appleframework.version>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 
-		<junit.version>4.8.2</junit.version>
-		<mockito.version>1.8.5</mockito.version>
-		<hamcrest.version>1.1</hamcrest.version>
-		<aspectj.version>1.6.8</aspectj.version>
-		<javassist.version>3.15.0-GA</javassist.version>
-		<quartz.scheduler.version>1.8.4</quartz.scheduler.version>
+		<junit.version>4.12</junit.version>
+		<aspectj.version>1.8.5</aspectj.version>
+		<javassist.version>3.20.0-GA</javassist.version>
+		<quartz.scheduler.version>2.2.1</quartz.scheduler.version>
 
-		<cglib.nodep.version>2.2</cglib.nodep.version>
-		<jersey.version>1.7</jersey.version>
 		<jackson.version>1.9.5</jackson.version>
 
 		<mysql.version>5.1.16</mysql.version>
-		<hades.version>2.0.3.RELEASE</hades.version>
-		<openutils.log4j.version>2.0.5</openutils.log4j.version>
-		<log4j.version>1.2.16</log4j.version>
-		<slf4j.version>1.6.0</slf4j.version>
-		<jetty.version>8.1.6.v20120903</jetty.version>
+		<log4j.version>1.2.17</log4j.version>
+		<slf4j.version>1.7.2</slf4j.version>
 
-		<commons.lang.version>2.4</commons.lang.version>
-		<commons.lang3.version>3.1</commons.lang3.version>
+		<commons.lang.version>2.6</commons.lang.version>
+		<commons.lang3.version>3.4</commons.lang3.version>
 		<commons.jexl.version>1.1</commons.jexl.version>
 		<commons.dbcp.version>1.4</commons.dbcp.version>
-		<commons.beanutils.version>1.7.0</commons.beanutils.version>
-		<commons.codec.version>1.6</commons.codec.version>
-		<commons.io.version>1.4</commons.io.version>
-		<commons.fileupload.version>1.2.1</commons.fileupload.version>
+		<commons.beanutils.version>1.9.2</commons.beanutils.version>
+		<commons.codec.version>1.10</commons.codec.version>
+		<commons.io.version>2.4</commons.io.version>
+		<commons.fileupload.version>1.3.1</commons.fileupload.version>
 		<commons.collections.version>3.2.1</commons.collections.version>
-		<commons.jexl.version>1.1</commons.jexl.version>
 		<commons.pool.version>1.6</commons.pool.version>
 
-		<ehcache.version>2.3.2</ehcache.version>
-		<perf4j.version>0.9.14</perf4j.version>
-		<easymock.version>3.0</easymock.version>
-		<springext-plugin-version>1.0</springext-plugin-version>
-		<xmlbeans.version>2.6.0</xmlbeans.version>
-		<selenium.version>2.0a7</selenium.version>
+		<ehcache.version>2.6.11</ehcache.version>
+		<perf4j.version>0.9.16</perf4j.version>
 
-		<spring.version>4.0.5.RELEASE</spring.version>
+		<spring.version>4.2.0.RELEASE</spring.version>
 
 		<hibernate.version>4.3.5.Final</hibernate.version>
 		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
 
-		<mybatis.version>3.2.2</mybatis.version>
-		<mybatis.spring.version>1.2.0</mybatis.spring.version>
+		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis.spring.version>1.2.3</mybatis.spring.version>
 
 
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<!-- 
 		<freemarker.version>[2.3.18,2.4)</freemarker.version>
 		 -->
-		<freemarker.version>2.3.21</freemarker.version>
-		<shiro.version>1.2.1</shiro.version>
+		<freemarker.version>2.3.23</freemarker.version>
+		<shiro.version>1.2.4</shiro.version>
 
-		<jersey.version>1.2</jersey.version>
 
-		<zookeeper.version>3.3.3</zookeeper.version>
+		<zookeeper.version>3.4.6</zookeeper.version>
 		<zkclient.version>0.1</zkclient.version>
 		<dubbo.version>2.5.3</dubbo.version>
-
-		<struts2.version>2.1.8.1</struts2.version>
-
-		<diamond.client.version>2.1.0-SNAPSHOT</diamond.client.version>
 
 		<maven-site-plugin-version>2.2</maven-site-plugin-version>
 		<maven-resources-plugin-version>2.5</maven-resources-plugin-version>
@@ -515,56 +498,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-core</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-server</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-spring</artifactId>
-				<version>${jersey.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-beans</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-context</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-web</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-aop</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>com.sun.jersey</groupId>
-						<artifactId>jersey-grizzly2</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-apache-client4</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
 				<artifactId>jackson-jaxrs</artifactId>
 				<version>${jackson.version}</version>
@@ -579,26 +512,7 @@
 				<artifactId>json</artifactId>
 				<version>20080701</version>
 			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-server</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-webapp</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>test-jetty-servlet</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-util</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
+			
 			<dependency>
 				<groupId>javax.ws.rs</groupId>
 				<artifactId>jsr311-api</artifactId>
@@ -632,50 +546,6 @@
 				<version>${javassist.version}</version>
 			</dependency>
 
-			<!-- rest begin -->
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-server</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-client</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey</groupId>
-				<artifactId>jersey-json</artifactId>
-				<version>${jersey.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.codehaus.jettison</groupId>
-						<artifactId>jettison</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.codehaus.jackson</groupId>
-						<artifactId>jackson-xc</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.jersey.contribs</groupId>
-				<artifactId>jersey-spring</artifactId>
-				<version>${jersey.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.grizzly</groupId>
-				<artifactId>grizzly-servlet-webserver</artifactId>
-				<version>${jersey.version}</version>
-			</dependency>
-			<!-- rest end -->
-
 			<dependency>
 				<groupId>org.apache.zookeeper</groupId>
 				<artifactId>zookeeper</artifactId>
@@ -695,63 +565,12 @@
 						<groupId>org.springframework</groupId>
 						<artifactId>spring</artifactId>
 					</exclusion>
-				</exclusions>
-			</dependency>
-
-			<!-- struts2 -->
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-core</artifactId>
-				<version>${struts2.version}</version>
-			</dependency>
-
-			<!-- <dependency> <groupId>org.apache.struts.xwork</groupId> <artifactId>xwork-core</artifactId> 
-				<version>2.1.6</version> </dependency> -->
-
-			<dependency>
-				<groupId>com.opensymphony</groupId>
-				<artifactId>xwork-core</artifactId>
-				<version>2.1.6</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-spring-plugin</artifactId>
-				<version>${struts2.version}</version>
-				<exclusions>
 					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-beans</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-context</artifactId>
+						<groupId>org.jboss.netty</groupId>
+						<artifactId>netty</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
-
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-json-plugin</artifactId>
-				<version>${struts2.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-convention-plugin</artifactId>
-				<version>${struts2.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.taobao.diamond</groupId>
-				<artifactId>diamond-client</artifactId>
-				<version>${diamond.client.version}</version>
-			</dependency>
-
 
 		</dependencies>
 
