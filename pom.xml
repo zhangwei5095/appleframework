@@ -34,7 +34,7 @@
 		<project.version>0.1.2.RELEASE</project.version>
 		<appleframework.version>${project.version}</appleframework.version>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 
 		<junit.version>4.8.2</junit.version>
 		<mockito.version>1.8.5</mockito.version>
@@ -52,7 +52,6 @@
 		<openutils.log4j.version>2.0.5</openutils.log4j.version>
 		<log4j.version>1.2.16</log4j.version>
 		<slf4j.version>1.6.0</slf4j.version>
-		<jetty.version>8.1.6.v20120903</jetty.version>
 
 		<commons.lang.version>2.4</commons.lang.version>
 		<commons.lang3.version>3.1</commons.lang3.version>
@@ -94,10 +93,6 @@
 		<zookeeper.version>3.3.3</zookeeper.version>
 		<zkclient.version>0.1</zkclient.version>
 		<dubbo.version>2.5.3</dubbo.version>
-
-		<struts2.version>2.1.8.1</struts2.version>
-
-		<diamond.client.version>2.1.0-SNAPSHOT</diamond.client.version>
 
 		<maven-site-plugin-version>2.2</maven-site-plugin-version>
 		<maven-resources-plugin-version>2.5</maven-resources-plugin-version>
@@ -579,26 +574,7 @@
 				<artifactId>json</artifactId>
 				<version>20080701</version>
 			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-server</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-webapp</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>test-jetty-servlet</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-util</artifactId>
-				<version>${jetty.version}</version>
-			</dependency>
+
 			<dependency>
 				<groupId>javax.ws.rs</groupId>
 				<artifactId>jsr311-api</artifactId>
@@ -698,59 +674,6 @@
 				</exclusions>
 			</dependency>
 
-			<!-- struts2 -->
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-core</artifactId>
-				<version>${struts2.version}</version>
-			</dependency>
-
-			<!-- <dependency> <groupId>org.apache.struts.xwork</groupId> <artifactId>xwork-core</artifactId> 
-				<version>2.1.6</version> </dependency> -->
-
-			<dependency>
-				<groupId>com.opensymphony</groupId>
-				<artifactId>xwork-core</artifactId>
-				<version>2.1.6</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-spring-plugin</artifactId>
-				<version>${struts2.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-beans</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-context</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-json-plugin</artifactId>
-				<version>${struts2.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.struts</groupId>
-				<artifactId>struts2-convention-plugin</artifactId>
-				<version>${struts2.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.taobao.diamond</groupId>
-				<artifactId>diamond-client</artifactId>
-				<version>${diamond.client.version}</version>
-			</dependency>
 
 
 		</dependencies>
