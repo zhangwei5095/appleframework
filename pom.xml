@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>com.appleframework</groupId>
 	<artifactId>appleframework</artifactId>
-	<version>0.1.4.RELEASE</version>
+	<version>0.1.3.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>appleframework</name>
@@ -31,7 +31,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.version>0.1.4.RELEASE</project.version>
+		<project.version>0.1.3.RELEASE</project.version>
 		<appleframework.version>${project.version}</appleframework.version>
 		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<java.version>1.7</java.version>
@@ -61,7 +61,7 @@
 		<ehcache.version>2.6.11</ehcache.version>
 		<perf4j.version>0.9.16</perf4j.version>
 
-		<spring.version>4.0.5.RELEASE</spring.version>
+		<spring.version>4.2.0.RELEASE</spring.version>
 
 		<hibernate.version>4.3.5.Final</hibernate.version>
 		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
