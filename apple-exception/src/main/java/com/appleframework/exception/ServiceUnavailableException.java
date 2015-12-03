@@ -4,7 +4,6 @@
  */
 package com.appleframework.exception;
 
-
 import com.appleframework.exception.error.AppleMainError;
 import com.appleframework.exception.error.AppleSubError;
 import com.appleframework.exception.error.AppleSubErrorType;
