@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
-public class SystemTimeFunction implements TimeFunction {
-	private static final TimeFunction systemClock = new SystemTimeFunction();
+public class InvalidSystemClockException extends Exception {
+	private static final long serialVersionUID = -9187977083903839232L;
 
-	public static TimeFunction getInstance() {
-		return systemClock;
-	}
-
-	private SystemTimeFunction() {}
-
-	@Override
-	public long now() {
-		return System.currentTimeMillis();
+	public InvalidSystemClockException() {
+		super("System clock ran backwards");
 	}
 }

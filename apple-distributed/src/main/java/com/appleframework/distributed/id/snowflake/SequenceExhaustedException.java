@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
-public class InvalidSystemClockException extends Exception {
-	private static final long serialVersionUID = -9187977083903839232L;
+public class SequenceExhaustedException extends Exception {
+	private static final long serialVersionUID = -2301105407104624814L;
 
-	public InvalidSystemClockException() {
-		super("System clock ran backwards");
+	public SequenceExhaustedException(int seqNum) {
+		super(String.format("Sequence upper bound reached at %d", seqNum));
 	}
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
 import java.util.concurrent.TimeUnit;
 

@@ -14,30 +14,10 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
-public class RandomIdentityGenerator implements IdentityGenerator {
-	
-	public static IdentityGenerator unseeded() {
-		return new RandomIdentityGenerator();
-	}
-
-	public static IdentityGenerator seeded(long seed) {
-		return new RandomIdentityGenerator();
-	}
-
-	private java.util.Random rng;
-
-	RandomIdentityGenerator() {
-		rng = new java.util.Random();
-	}
-
-	RandomIdentityGenerator(long seed) {
-		rng = new java.util.Random(seed);
-	}
-
-	@Override
-	public int generate() {
-		return rng.nextInt(10);
-	}
+/**
+ */
+public interface IdProvider {
+  public long getId() throws InvalidSystemClockException, SequenceExhaustedException;
 }

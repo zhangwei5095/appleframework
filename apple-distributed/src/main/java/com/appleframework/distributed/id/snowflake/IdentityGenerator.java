@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2010-2012 LShift Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
-public interface TimeFunction {
-	public long now();
+public interface IdentityGenerator {
+	public int generate();
 }

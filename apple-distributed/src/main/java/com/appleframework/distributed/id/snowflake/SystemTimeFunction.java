@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2010-2012 LShift Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,17 +14,19 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
-public class IdProviderFactory {
-	private final IdentityGenerator machineIdGenerator = RandomIdentityGenerator.unseeded();
-	private final MachineIdAssigner machineIdAssigner;
+public class SystemTimeFunction implements TimeFunction {
+	private static final TimeFunction systemClock = new SystemTimeFunction();
 
-	public IdProviderFactory(String clusterDescriptor) throws Exception {
-		machineIdAssigner = MachineIdAssigner.getInstance(clusterDescriptor);
+	public static TimeFunction getInstance() {
+		return systemClock;
 	}
 
-	public IdProvider getProvider() {
-		return new SnowflakeIdProvider(machineIdAssigner.assign(machineIdGenerator));
+	private SystemTimeFunction() {}
+
+	@Override
+	public long now() {
+		return System.currentTimeMillis();
 	}
 }

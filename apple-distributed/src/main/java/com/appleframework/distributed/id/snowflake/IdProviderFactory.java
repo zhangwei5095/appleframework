@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2010-2012 LShift Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
-public class SequenceExhaustedException extends Exception {
-	private static final long serialVersionUID = -2301105407104624814L;
+public class IdProviderFactory {
+	
+	private final IdentityGenerator machineIdGenerator = RandomIdentityGenerator.unseeded();
+	private final MachineIdAssigner machineIdAssigner;
 
-	public SequenceExhaustedException(int seqNum) {
-		super(String.format("Sequence upper bound reached at %d", seqNum));
+	public IdProviderFactory(String clusterDescriptor) throws Exception {
+		machineIdAssigner = MachineIdAssigner.getInstance(clusterDescriptor);
+	}
+
+	public IdProvider getProvider() {
+		return new SnowflakeIdProvider(machineIdAssigner.assign(machineIdGenerator));
 	}
 }

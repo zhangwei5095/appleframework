@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.appleframework.distributed.snowflake;
+package com.appleframework.distributed.id.snowflake;
 
 import static java.lang.Math.pow;
 import static java.lang.Math.round;
