@@ -1,4 +1,4 @@
-package com.appleframework.distributed.id;
+package com.appleframework.distributed.id.snowflake3;
 
 import java.util.HashSet;
 import java.util.Set;

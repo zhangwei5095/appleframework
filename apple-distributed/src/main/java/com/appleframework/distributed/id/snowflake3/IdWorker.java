@@ -1,4 +1,4 @@
-package com.appleframework.distributed.id;
+package com.appleframework.distributed.id.snowflake3;
 
 public interface IdWorker {
 	
