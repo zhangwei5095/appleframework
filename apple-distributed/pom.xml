@@ -54,11 +54,12 @@
 			<artifactId>commons-pool</artifactId>
 		</dependency>
 
+		<!-- 
 		<dependency>
 			<groupId>com.google.collections</groupId>
 			<artifactId>google-collections</artifactId>
 		</dependency>
-
+		 -->
 		<dependency>
 			<groupId>com.netflix.curator</groupId>
 			<artifactId>curator-client</artifactId>
