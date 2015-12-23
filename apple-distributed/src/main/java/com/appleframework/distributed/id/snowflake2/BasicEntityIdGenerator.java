@@ -68,9 +68,7 @@ public class BasicEntityIdGenerator implements EntityIdGenerator {
             sequence = 0;
         }
         lastTimestamp = timestamp;
-        Long id = ((timestamp - twepoch) << timestampLeftShift) |
-                (datacenterId << datacenterIdShift) |
-                sequence;
+        Long id = ((timestamp - twepoch) << timestampLeftShift) | (datacenterId << datacenterIdShift) | sequence;
         return id.toString();
     }
 
@@ -83,7 +81,6 @@ public class BasicEntityIdGenerator implements EntityIdGenerator {
     }
 
     protected long getDatacenterId() throws GetHardwareIdFailedException {
-
         try {
             InetAddress ip = InetAddress.getLocalHost();
             NetworkInterface network = NetworkInterface.getByInetAddress(ip);
