@@ -8,14 +8,6 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.appleframework.exception.error.AppleMainError;
-import com.appleframework.exception.error.AppleSubError;
-import com.appleframework.exception.error.AppleSubErrorType;
-import com.appleframework.exception.error.AppleSubErrors;
-
-import java.util.ArrayList;
-import java.util.Locale;
-
 /**
  * <pre>
  * 功能说明：
@@ -30,29 +22,28 @@ public class TimeoutException extends AppleException {
 
 	private static final long serialVersionUID = -4131567927036108840L;
 
-	private static final String RSP = "rsp.";
-
     private static final String SERVICE_TIMEOUT = "-timeout";
 
     public TimeoutException() {
     }
 
-    public TimeoutException(String method, Locale locale, int timeout) {
-    	if(null == locale)
-    		locale = Locale.CHINA;
-        AppleMainError mainError = AppleSubErrors.getMainError(AppleSubErrorType.RSP_SERVICE_TIMEOUT, locale);
-        ArrayList<AppleSubError> subErrors = new ArrayList<AppleSubError>();
+    public TimeoutException(Class<?> clazz) {
+		super(SERVICE_TIMEOUT);
+		this.clazz = getInterfaceName(clazz);
+	}
+	
+	public TimeoutException(Throwable throwable) {
+		super(SERVICE_TIMEOUT, throwable);
+	}
 
-        String errorCodeKey = RSP + transform(method) + SERVICE_TIMEOUT;
-        AppleSubError subError = AppleSubErrors.getSubError(errorCodeKey,
-                AppleSubErrorType.RSP_SERVICE_TIMEOUT.value(),
-                locale,
-                method, timeout);
-        subErrors.add(subError);
+	public TimeoutException(Class<?> clazz, Throwable throwable) {
+		super(SERVICE_TIMEOUT, throwable);
+		this.clazz = getInterfaceName(clazz);
+	}
 
-        setSubErrors(subErrors);
-        setMainError(mainError);
-    }
-
+	public TimeoutException(Class<?> clazz, Throwable throwable, Object... params) {
+		super(SERVICE_TIMEOUT, throwable);
+		this.clazz = getInterfaceName(clazz);
+		this.params = params;
+	}
 }
-

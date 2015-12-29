@@ -4,17 +4,6 @@
  */
 package com.appleframework.exception;
 
-import javax.xml.bind.annotation.*;
-
-import com.appleframework.exception.error.AppleMainError;
-import com.appleframework.exception.error.AppleMainErrorType;
-import com.appleframework.exception.error.AppleMainErrors;
-import com.appleframework.exception.error.AppleSubError;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 /**
  * <pre>
  * 功能说明：
@@ -26,19 +15,20 @@ import java.util.Locale;
 public class AppleException extends Exception {
 
 	private static final long serialVersionUID = -4379801359412979859L;
+	
+	public static final String RSP = "rsp.";
+	
+	public static final String ERROR = "-error:";
 
-	@XmlAttribute
     protected String code;
 
-    @XmlElement
     protected String message;
 
-    @XmlElement
     protected String solution;
+    
+    protected String clazz;
 
-    @XmlElementWrapper(name = "subErrors")
-    @XmlElement(name = "subError")
-    protected List<AppleSubError> subErrors;
+    protected Object[] params;
 
     public AppleException() {
     }
@@ -47,19 +37,14 @@ public class AppleException extends Exception {
     	super(throwable);
     }
 
-    public AppleException(String message, Throwable throwable) {
-    	super(message, throwable);
+    public AppleException(String code, Throwable throwable) {
+    	super(code, throwable);
     }
     
-    public AppleException(AppleMainError mainError) {
-        this.code = mainError.getCode();
-        this.message = mainError.getMessage();
-        this.solution = mainError.getSolution();
-        if (mainError.getSubErrors() != null && mainError.getSubErrors().size() > 0) {
-            this.subErrors = mainError.getSubErrors();
-        }
+    public AppleException(String code) {
+    	super(code);
     }
-
+    
     public String getCode() {
         return code;
     }
@@ -84,38 +69,13 @@ public class AppleException extends Exception {
         this.solution = solution;
     }
 
-    public List<AppleSubError> getSubErrors() {
-        return subErrors;
-    }
-
-    public void setSubErrors(List<AppleSubError> subErrors) {
-        this.subErrors = subErrors;
-    }
-
-    public void addSubError(AppleSubError subError){
-        if (subErrors == null) {
-            subErrors = new ArrayList<AppleSubError>();
-        }
-        subErrors.add(subError);
-    }
-
-    protected AppleMainError getInvalidArgumentsError(Locale locale) {
-        return AppleMainErrors.getError(AppleMainErrorType.INVALID_ARGUMENTS, locale);
-    }
-
-    protected void setMainError(AppleMainError mainError) {
-        setCode(mainError.getCode());
-        setMessage(mainError.getMessage());
-        setSolution(mainError.getSolution());
-    }
-
     /**
      * 对服务名进行标准化处理：如book.upload转换为book-upload，
      *
      * @param method
      * @return
      */
-    protected String transform(String serviceName) {
+    public String transform(String serviceName) {
         if(serviceName != null){
         	serviceName = serviceName.replace(".", "-");
             return serviceName;
@@ -124,9 +84,8 @@ public class AppleException extends Exception {
         }
     }
     
-    @SuppressWarnings("rawtypes")
-	public String getInterfaceName(Class clazz) {
-		Class[] clazzs = clazz.getInterfaces();
+	public String getInterfaceName(Class<?> clazz) {
+		Class<?>[] clazzs = clazz.getInterfaces();
 		if(clazzs.length > 0) {
 			return clazzs[0].getName();
 		}
@@ -134,24 +93,28 @@ public class AppleException extends Exception {
 			return clazz.getName();
 		}
 	}
-    
-	public String getSubErrorMessage() {
-		if(null != subErrors && subErrors.size() > 0) {
-			return subErrors.get(0).getMessage();
-		}
-		else {
-			return null;
-		}
-	}
 	
-	public String getSubErrorCode() {
-		if(null != subErrors && subErrors.size() > 0) {
-			return subErrors.get(0).getCode();
-		}
-		else {
-			return null;
-		}
+	public String getKey() {
+		if(null == clazz)
+			return RSP + "." + code;
+		else
+			return RSP + transform(clazz) + ERROR + code;
+	}
+
+	public String getClazz() {
+		return clazz;
+	}
+
+	public void setClazz(String clazz) {
+		this.clazz = clazz;
+	}
+
+	public Object[] getParams() {
+		return params;
+	}
+
+	public void setParams(Object[] params) {
+		this.params = params;
 	}
 
 }
-
