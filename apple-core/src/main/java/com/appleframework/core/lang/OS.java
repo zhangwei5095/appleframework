@@ -36,101 +36,83 @@ import java.util.Arrays;
  * @author Cruise.Xu
  */
 public enum OS {
-   WINDOWS_NT(
-            "Windows NT"),
-   WINDOWS_95(
-            "Windows 95"),
-   WINDOWS_98(
-            "Windows 98"),
-   WINDOWS_2000(
-            "Windows 2000"),
-   WINDOWS_VISTA(
-            "Windows Vista"),
-   WINDOWS_7(
-            "Windows 7"),
-   //
-   SOLARIS(
-            "Solaris"),
-   LINUX(
-            "Linux"),
-   HP_UX(
-            "HP-UX"),
-   IBM_AIX(
-            "AIX"),
-   SGI_IRIX(
-            "Irix"),
-   SUN_OS(
-            "SunOS"),
-   COMPAQ_TRU64_UNIX(
-            "Digital UNIX"),
-   MAC(
-            "Mac OS X",
-            "Darwin"),
-   FREEBSD(
-            "freebsd"),
-   //
-   OS2(
-            "OS/2"),
-   COMPAQ_OPEN_VMS(
-            "OpenVMS"),
-   OTHER(
-            "");
-   private String names[];
+	
+	WINDOWS_NT("Windows NT"),
+	WINDOWS_95("Windows 95"),
+	WINDOWS_98("Windows 98"),
+	WINDOWS_2000("Windows 2000"),
+	WINDOWS_VISTA("Windows Vista"),
+	WINDOWS_7("Windows 7"),
+	SOLARIS("Solaris"),
+	LINUX("Linux"),
+	HP_UX("HP-UX"),
+	IBM_AIX("AIX"),
+	SGI_IRIX("Irix"),
+	SUN_OS("SunOS"),
+	COMPAQ_TRU64_UNIX("Digital UNIX"),
+	MAC("Mac OS X", "Darwin"),
+	FREEBSD("freebsd"),
+	OS2("OS/2"),
+	COMPAQ_OPEN_VMS("OpenVMS"),
+	OTHER("");
+	
+	private String names[];
 
-   private OS(String... names) {
-      this.names = names;
-   }
+	private OS(String... names) {
+		this.names = names;
+	}
 
-   /**
-    * @return names of operation system
-    */
-   public String[] getNames() {
-      return Arrays.copyOf(names, names.length);
-   }
+	/**
+	 * @return names of operation system
+	 */
+	public String[] getNames() {
+		return Arrays.copyOf(names, names.length);
+	}
 
-   /**
-    * @return true if this OS belongs to windows family
-    */
-   public boolean isWindows() {
-      return ordinal() <= WINDOWS_7.ordinal();
-   }
+	/**
+	 * @return true if this OS belongs to windows family
+	 */
+	public boolean isWindows() {
+		return ordinal() <= WINDOWS_7.ordinal();
+	}
 
-   /**
-    * @return true if this OS belongs to *nix family
-    */
-   public boolean isUnix() {
-      return ordinal() > WINDOWS_7.ordinal() && ordinal() < OS2.ordinal();
-   }
+	/**
+	 * @return true if this OS belongs to *nix family
+	 */
+	public boolean isUnix() {
+		return ordinal() > WINDOWS_7.ordinal() && ordinal() < OS2.ordinal();
+	}
 
-   /*-------------------------------------------------[ Static Methods ]---------------------------------------------------*/
+	/*-------------------------------------------------[ Static Methods ]---------------------------------------------------*/
 
-   /**
-    * @param operationSytem
-    *           name of OS as returned by <code>System.getProperty("os.name")</code>
-    * @return OS for the specified {@code osName}
-    */
-   public static OS get(String operationSytem) {
-      String osName = operationSytem;
-      osName = osName.toLowerCase();
-      for (OS os : values()) {
-         for (String name : os.names) {
-            if (osName.contains(name.toLowerCase())) {
-               return os;
-            }
-         }
-      }
-      return null;
-   }
+	/**
+	 * @param operationSytem
+	 *            name of OS as returned by
+	 *            <code>System.getProperty("os.name")</code>
+	 * @return OS for the specified {@code osName}
+	 */
+	public static OS get(String operationSytem) {
+		String osName = operationSytem;
+		osName = osName.toLowerCase();
+		for (OS os : values()) {
+			for (String name : os.names) {
+				if (osName.contains(name.toLowerCase())) {
+					return os;
+				}
+			}
+		}
+		return null;
+	}
 
-   private static OS current;
+	private static OS current;
 
-   /**
-    * @return OS on which this JVM is running
-    */
-   public synchronized static OS get() {
-      if (current == null) {
-         current = get(System.getProperty("os.name"));
-      }
-      return current;
-   }
+	/**
+	 * @return OS on which this JVM is running
+	 */
+	public synchronized static OS get() {
+		if (current == null) {
+			current = get(System.getProperty("os.name"));
+		}
+		return current;
+	}
 }
