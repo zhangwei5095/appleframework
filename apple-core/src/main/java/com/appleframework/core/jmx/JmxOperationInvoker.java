@@ -57,8 +57,7 @@ public abstract class JmxOperationInvoker<T> {
       ObjectName mbeanName = new ObjectName(objectName);
       try {
          if (mBeanServerConnection.isRegistered(mbeanName)) {
-            Object proxy = JMX
-                     .newMBeanProxy(mBeanServerConnection, mbeanName, mBeanInterface, true);
+            Object proxy = JMX.newMBeanProxy(mBeanServerConnection, mbeanName, mBeanInterface, true);
             doInvoke((T) proxy);
          } else {
             logger.warn("mbean %s is not registered", mbeanName);
