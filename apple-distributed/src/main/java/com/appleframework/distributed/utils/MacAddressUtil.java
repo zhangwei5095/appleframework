@@ -37,6 +37,7 @@ public class MacAddressUtil {
 					continue;
 				}
 				hardMac = mac;
+				return hardMac;
 			}
 		} catch (SocketException e) {
 			logger.error("找不到mac地址", e);
