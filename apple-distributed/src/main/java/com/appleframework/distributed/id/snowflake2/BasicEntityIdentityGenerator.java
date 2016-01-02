@@ -46,7 +46,7 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
 
     private static IdentityGenerator basicEntityIdentityGenerator;
 
-    public static IdentityGenerator getInstance() throws GetHardwareIdFailedException {
+    public static IdentityGenerator getInstance() {
         if (basicEntityIdentityGenerator == null) basicEntityIdentityGenerator = new BasicEntityIdentityGenerator();
         return basicEntityIdentityGenerator;
     }
