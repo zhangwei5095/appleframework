@@ -6,6 +6,8 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import org.apache.log4j.Logger;
+
 import com.appleframework.distributed.id.IdentityGenerator;
 
 /**
@@ -22,6 +24,8 @@ import com.appleframework.distributed.id.IdentityGenerator;
  *
  */
 public class BasicEntityIdentityGenerator implements IdentityGenerator {
+
+    protected static final Logger logger = Logger.getLogger(BasicEntityIdentityGenerator.class);
 
 //   id format  =>
 //   timestamp |datacenter | sequence
@@ -46,11 +50,11 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
         if (basicEntityIdentityGenerator == null) basicEntityIdentityGenerator = new BasicEntityIdentityGenerator();
         return basicEntityIdentityGenerator;
     }
-
-    private BasicEntityIdentityGenerator() throws GetHardwareIdFailedException {
-        datacenterId = getDatacenterId();
+    
+    private BasicEntityIdentityGenerator() {
+		datacenterId = getDatacenterId();
         if (datacenterId > maxDatacenterId || datacenterId < 0) {
-            throw new GetHardwareIdFailedException("datacenterId > maxDatacenterId");
+        	logger.error("datacenterId > maxDatacenterId");
         }
     }
 
@@ -82,7 +86,7 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
         return timestamp;
     }
 
-    protected long getDatacenterId() throws GetHardwareIdFailedException {
+    protected long getDatacenterId() {
         try {
             InetAddress ip = InetAddress.getLocalHost();
             NetworkInterface network = NetworkInterface.getByInetAddress(ip);
@@ -95,9 +99,11 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
             }
             return id;
         } catch (SocketException e) {
-            throw new GetHardwareIdFailedException(e);
+        	logger.error(e);
+        	return -1L;
         } catch (UnknownHostException e) {
-            throw new GetHardwareIdFailedException(e);
+        	logger.error(e);
+        	return -1L;
         }
     }
 
