@@ -6,6 +6,8 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import com.appleframework.distributed.id.IdentityGenerator;
+
 /**
  * BasicEntityIdGenerator
  *
@@ -19,7 +21,7 @@ import java.net.UnknownHostException;
  *
  *
  */
-public class BasicEntityIdGenerator implements EntityIdGenerator {
+public class BasicEntityIdentityGenerator implements IdentityGenerator {
 
 //   id format  =>
 //   timestamp |datacenter | sequence
@@ -38,14 +40,14 @@ public class BasicEntityIdGenerator implements EntityIdGenerator {
     private volatile long lastTimestamp = -1L;
     private volatile long sequence = 0L;
 
-    private static BasicEntityIdGenerator basicEntityIdGenerator;
+    private static IdentityGenerator basicEntityIdentityGenerator;
 
-    public static BasicEntityIdGenerator getInstance() throws GetHardwareIdFailedException {
-        if (basicEntityIdGenerator == null) basicEntityIdGenerator = new BasicEntityIdGenerator();
-        return basicEntityIdGenerator;
+    public static IdentityGenerator getInstance() throws GetHardwareIdFailedException {
+        if (basicEntityIdentityGenerator == null) basicEntityIdentityGenerator = new BasicEntityIdentityGenerator();
+        return basicEntityIdentityGenerator;
     }
 
-    private BasicEntityIdGenerator() throws GetHardwareIdFailedException {
+    private BasicEntityIdentityGenerator() throws GetHardwareIdFailedException {
         datacenterId = getDatacenterId();
         if (datacenterId > maxDatacenterId || datacenterId < 0) {
             throw new GetHardwareIdFailedException("datacenterId > maxDatacenterId");
@@ -53,10 +55,10 @@ public class BasicEntityIdGenerator implements EntityIdGenerator {
     }
 
     @Override
-    public synchronized String generateLongId() throws InvalidSystemClockException {
+    public synchronized Long generateId() {
         long timestamp = System.currentTimeMillis();
         if (timestamp < lastTimestamp) {
-            throw new InvalidSystemClockException("Clock moved backwards.  Refusing to generate id for " + (
+            throw new RuntimeException("Clock moved backwards.  Refusing to generate id for " + (
                     lastTimestamp - timestamp) + " milliseconds.");
         }
         if (lastTimestamp == timestamp) {
@@ -69,7 +71,7 @@ public class BasicEntityIdGenerator implements EntityIdGenerator {
         }
         lastTimestamp = timestamp;
         Long id = ((timestamp - twepoch) << timestampLeftShift) | (datacenterId << datacenterIdShift) | sequence;
-        return id.toString();
+        return id;
     }
 
     protected long tilNextMillis(long lastTimestamp) {
@@ -98,4 +100,5 @@ public class BasicEntityIdGenerator implements EntityIdGenerator {
             throw new GetHardwareIdFailedException(e);
         }
     }
+
 }

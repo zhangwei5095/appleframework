@@ -18,6 +18,7 @@ package com.appleframework.distributed.id.snowflake;
 
 import java.util.concurrent.TimeUnit;
 
+import com.appleframework.distributed.id.IdentityGenerator;
 import com.netflix.curator.RetryPolicy;
 import com.netflix.curator.framework.CuratorFramework;
 import com.netflix.curator.framework.CuratorFrameworkFactory;
@@ -87,7 +88,7 @@ public class MachineIdAssigner {
 		while (retryCount < COLLISION_MAX_RETRIES) {
 			try {
 				retryCount++;
-				int id = generator.generate();
+				int id = generator.generateId().intValue();
 				if (tryAssign(pathFromId(id))) {
 					return id;
 				}

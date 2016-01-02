@@ -2,6 +2,8 @@ package com.appleframework.distributed.id.snowflake3;
 
 import org.apache.log4j.Logger;
 
+import com.appleframework.distributed.id.IdentityGenerator;
+
 
 /**
  * @author zhujuan
@@ -41,9 +43,9 @@ import org.apache.log4j.Logger;
  * 核心代码就是毫秒级时间41位+机器ID 10位+毫秒内序列12位
  * 
  */
-public class IdWorker1 implements IdWorker {
+public class SnowflakeIdGenerator1 implements IdentityGenerator {
     
-    protected static final Logger LOG = Logger.getLogger(IdWorker1.class);
+    protected static final Logger LOG = Logger.getLogger(SnowflakeIdGenerator1.class);
     
     private long workerId; //机器标识位数
     private long datacenterId; 
@@ -64,7 +66,7 @@ public class IdWorker1 implements IdWorker {
 
     private long lastTimestamp = -1L;
 
-    public IdWorker1(long workerId, long datacenterId) {
+    public SnowflakeIdGenerator1(long workerId, long datacenterId) {
         // sanity check for workerId
         if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(
@@ -82,7 +84,7 @@ public class IdWorker1 implements IdWorker {
         						datacenterIdBits, workerIdBits, sequenceBits, workerId));
     }
     
-	public synchronized long nextId() {
+	public synchronized Long generateId() {
 		long timestamp = timeGen();
 		// 时间错误
 		if (timestamp < lastTimestamp) {
@@ -125,9 +127,9 @@ public class IdWorker1 implements IdWorker {
     }
     
     public static void main(String[] args) {
-		IdWorker1 worker = new IdWorker1(1,1);
+		SnowflakeIdGenerator1 worker = new SnowflakeIdGenerator1(1,1);
 		for (int i = 0; i < 1000; i++) {
-			System.out.println(worker.nextId());
+			System.out.println(worker.generateId());
 		}
 		System.out.println(worker.maxWorkerId);
 		System.out.println(worker.maxDatacenterId);

@@ -16,15 +16,16 @@
 
 package com.appleframework.distributed.id.snowflake;
 
+import com.appleframework.distributed.id.IdentityGenerator;
+
 public class RandomIdentityGenerator implements IdentityGenerator {
 	
-	public static IdentityGenerator unseeded() {
-		return new RandomIdentityGenerator();
-	}
-
-	public static IdentityGenerator seeded(long seed) {
-		return new RandomIdentityGenerator();
-	}
+	 private static IdentityGenerator randomIdentityGenerator;
+	
+	public static IdentityGenerator getInstance() {
+        if (randomIdentityGenerator == null) randomIdentityGenerator = new RandomIdentityGenerator();
+        return randomIdentityGenerator;
+    }
 
 	private java.util.Random rng;
 
@@ -37,7 +38,8 @@ public class RandomIdentityGenerator implements IdentityGenerator {
 	}
 
 	@Override
-	public int generate() {
-		return rng.nextInt(10);
+	public Long generateId() {
+		//rng.nextInt(10)
+		return rng.nextLong();
 	}
 }

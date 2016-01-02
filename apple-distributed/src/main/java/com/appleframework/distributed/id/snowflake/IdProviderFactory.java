@@ -16,9 +16,11 @@
 
 package com.appleframework.distributed.id.snowflake;
 
+import com.appleframework.distributed.id.IdentityGenerator;
+
 public class IdProviderFactory {
 	
-	private final IdentityGenerator machineIdGenerator = RandomIdentityGenerator.unseeded();
+	private final IdentityGenerator machineIdGenerator = RandomIdentityGenerator.getInstance();
 	private final MachineIdAssigner machineIdAssigner;
 
 	public IdProviderFactory(String clusterDescriptor) throws Exception {
