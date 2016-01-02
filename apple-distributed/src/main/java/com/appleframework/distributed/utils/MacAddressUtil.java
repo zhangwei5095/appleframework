@@ -1,0 +1,51 @@
+package com.appleframework.distributed.utils;
+
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
+/**
+ * @title: MacAddressUtil
+ * @description：获取MAC地址 @date： 2013-5-5 下午04:42:50
+ */
+public class MacAddressUtil {
+	
+	public static String hexByte(byte b) {
+		String s = "000000" + Integer.toHexString(b);
+		return s.substring(s.length() - 2);
+	}
+
+	public static byte[] getMAC() {
+		Enumeration<NetworkInterface> el;
+		byte[] hardMac = null;
+		try {
+			el = NetworkInterface.getNetworkInterfaces();
+			while (el.hasMoreElements()) {
+				byte[] mac = el.nextElement().getHardwareAddress();
+				if (mac == null || mac.length == 0)
+					continue;
+				if(hexByte(mac[0]).equals("00") &&
+					hexByte(mac[1]).equals("00") &&
+					hexByte(mac[2]).equals("00") &&
+					hexByte(mac[3]).equals("00") && 
+					hexByte(mac[4]).equals("00") && 
+					hexByte(mac[5]).equals("00")) {
+					continue;
+				}
+				hardMac = mac;
+			}
+		} catch (SocketException e1) {
+			e1.printStackTrace();
+		}
+		return hardMac;
+	}
+
+	public static void main(String[] args) {
+		byte[] mac = MacAddressUtil.getMAC();
+		String mac_s = hexByte(mac[0]) + "-" + hexByte(mac[1]) + "-"
+                + hexByte(mac[2]) + "-" + hexByte(mac[3]) + "-"
+                + hexByte(mac[4]) + "-" + hexByte(mac[5]);
+        System.out.println(mac_s + "MAC地址");
+
+	}
+}
