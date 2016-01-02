@@ -1,14 +1,9 @@
 package com.appleframework.distributed.id.snowflake2;
 
-
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
 import org.apache.log4j.Logger;
 
 import com.appleframework.distributed.id.IdentityGenerator;
+import com.appleframework.distributed.utils.MacAddressUtil;
 
 /**
  * BasicEntityIdGenerator
@@ -87,22 +82,12 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
     }
 
     protected long getDatacenterId() {
-        try {
-            InetAddress ip = InetAddress.getLocalHost();
-            NetworkInterface network = NetworkInterface.getByInetAddress(ip);
-            long id;
-            if (network == null) {
-                id = 1;
-            } else {
-                byte[] mac = network.getHardwareAddress();
-                id = ((0x000000FF & (long) mac[mac.length - 1]) | (0x0000FF00 & (((long) mac[mac.length - 2]) << 8))) >> 6;
-            }
+     	byte[] mac = MacAddressUtil.getMAC();
+     	if(null != mac) {
+            long id = ((0x000000FF & (long) mac[mac.length - 1]) | (0x0000FF00 & (((long) mac[mac.length - 2]) << 8))) >> 6;
             return id;
-        } catch (SocketException e) {
-        	logger.error(e);
-        	return -1L;
-        } catch (UnknownHostException e) {
-        	logger.error(e);
+        } else {
+        	logger.error("获取不到MAC地址");
         	return -1L;
         }
     }
