@@ -38,8 +38,8 @@ public class MacAddressUtil {
 				}
 				hardMac = mac;
 			}
-		} catch (SocketException e1) {
-			logger.error("找不到mac地址", e1);
+		} catch (SocketException e) {
+			logger.error("找不到mac地址", e);
 		}
 		return hardMac;
 	}
@@ -49,7 +49,7 @@ public class MacAddressUtil {
 		String mac_s = hexByte(mac[0]) + "-" + hexByte(mac[1]) + "-"
                 + hexByte(mac[2]) + "-" + hexByte(mac[3]) + "-"
                 + hexByte(mac[4]) + "-" + hexByte(mac[5]);
-        System.out.println(mac_s + "MAC地址");
+        System.out.println("MAC地址：" + mac_s);
 
 	}
 }
