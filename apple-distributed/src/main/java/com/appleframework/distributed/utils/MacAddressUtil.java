@@ -4,11 +4,15 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
+import org.apache.log4j.Logger;
+
 /**
  * @title: MacAddressUtil
  * @description：获取MAC地址 @date： 2013-5-5 下午04:42:50
  */
 public class MacAddressUtil {
+	
+	protected static final Logger logger = Logger.getLogger(MacAddressUtil.class);
 	
 	public static String hexByte(byte b) {
 		String s = "000000" + Integer.toHexString(b);
@@ -35,7 +39,7 @@ public class MacAddressUtil {
 				hardMac = mac;
 			}
 		} catch (SocketException e1) {
-			e1.printStackTrace();
+			logger.error("找不到mac地址", e1);
 		}
 		return hardMac;
 	}

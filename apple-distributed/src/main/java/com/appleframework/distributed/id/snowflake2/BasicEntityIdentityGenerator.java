@@ -49,7 +49,7 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
     private BasicEntityIdentityGenerator() {
 		datacenterId = getDatacenterId();
         if (datacenterId > maxDatacenterId || datacenterId < 0) {
-        	logger.error("datacenterId > maxDatacenterId");
+        	logger.error("datacenterId生成错误");
         }
     }
 
@@ -87,7 +87,6 @@ public class BasicEntityIdentityGenerator implements IdentityGenerator {
             long id = ((0x000000FF & (long) mac[mac.length - 1]) | (0x0000FF00 & (((long) mac[mac.length - 2]) << 8))) >> 6;
             return id;
         } else {
-        	logger.error("获取不到MAC地址");
         	return -1L;
         }
     }
