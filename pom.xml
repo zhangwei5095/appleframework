@@ -792,6 +792,7 @@
     	<module>apple-distributed</module>
     	<module>apple-exception</module>
     	<module>apple-web</module>
+    	<module>apple-context</module>
 	</modules>
 	
 </project>
