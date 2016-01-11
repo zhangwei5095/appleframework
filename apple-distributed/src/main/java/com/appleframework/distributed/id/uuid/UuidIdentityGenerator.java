@@ -10,14 +10,7 @@ import com.appleframework.distributed.utils.MacAddressUtil;
 /**
  * BasicEntityIdGenerator
  *
- * @author Maxim Khodanovich
- * @version 21.01.13 17:16
- *          <p/>
- *          id is composed of:
- *          time - 41 bits (millisecond precision w/ a custom epoch gives us 69 years)
- *          configured machine id - 10 bits - gives us up to 1024 machines
- *          sequence number - 12 bits - rolls over every 4096 per machine (with protection to avoid rollover in the same ms)
- *
+ * @author Cruise.Xu
  *
  */
 public class UuidIdentityGenerator implements IdentityGenerator {
