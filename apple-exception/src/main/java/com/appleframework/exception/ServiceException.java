@@ -7,7 +7,6 @@ package com.appleframework.exception;
  * @date: 2012-10-15
  * 
  */
-@SuppressWarnings("rawtypes")
 public class ServiceException extends AppleException {
 
 	private static final long serialVersionUID = 7696865849245536841L;
@@ -32,26 +31,26 @@ public class ServiceException extends AppleException {
 		super.code = code;
 	}
 
-	public ServiceException(Class clazz, String code) {
+	public ServiceException(Class<?> clazz, String code) {
 		super(code);
 		this.code = code;
 		this.clazz = getInterfaceName(clazz);
 	}
 	
-	public ServiceException(Class clazz, String code, Object... params) {
+	public ServiceException(Class<?> clazz, String code, Object... params) {
 		super(code);
 		this.code = code;
 		this.clazz = getInterfaceName(clazz);
 		this.params = params;
 	}
 
-	public ServiceException(Class clazz, String code, Throwable throwable) {
+	public ServiceException(Class<?> clazz, String code, Throwable throwable) {
 		super(code, throwable);
 		this.code = code;
 		this.clazz = getInterfaceName(clazz);
 	}
 	
-	public ServiceException(Class clazz, String code, Throwable throwable, Object... params) {
+	public ServiceException(Class<?> clazz, String code, Throwable throwable, Object... params) {
 		super(code, throwable);
 		this.code = code;
 		this.clazz = getInterfaceName(clazz);
@@ -64,5 +63,7 @@ public class ServiceException extends AppleException {
 		else
 			return RSP + transform(clazz) + ERROR + code;
 	}
+	
+	
 
 }
