@@ -74,6 +74,8 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 * 当前页的数据
 	 */
 	private List<?> list;
+	
+	private boolean isCountCache = false;
 
 	/**
 	 * 获得分页内容
@@ -102,6 +104,14 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 			return list.size();
 		else
 			return 0;
+	}
+
+	public boolean isCountCache() {
+		return isCountCache;
+	}
+
+	public void setCountCache(boolean isCountCache) {
+		this.isCountCache = isCountCache;
 	}
 	
 }
