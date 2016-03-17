@@ -12,7 +12,6 @@
 	<name>apple-exception</name>
 	<url>http://mvnrepo.appleframework.com</url>
 
-	
 	<dependencies>
 		<dependency>
 			<groupId>log4j</groupId>
