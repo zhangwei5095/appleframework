@@ -12,11 +12,4 @@
 	<name>apple-model</name>
 	<url>http://mvnrepo.appleframework.com</url>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 </project>
