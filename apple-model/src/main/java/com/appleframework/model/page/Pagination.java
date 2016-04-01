@@ -75,9 +75,6 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 	 */
 	private List<?> list;
 	
-	@XmlTransient
-	private boolean isCountCache = false;
-
 	/**
 	 * 获得分页内容
 	 * 
@@ -105,15 +102,6 @@ public class Pagination extends SimplePage implements java.io.Serializable, Pagi
 			return list.size();
 		else
 			return 0;
-	}
-
-	@XmlTransient
-	public boolean isCountCache() {
-		return isCountCache;
-	}
-
-	public void setCountCache(boolean isCountCache) {
-		this.isCountCache = isCountCache;
 	}
 	
 }
