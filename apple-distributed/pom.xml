@@ -6,16 +6,12 @@
 	<parent>
 		<artifactId>appleframework</artifactId>
 		<groupId>com.appleframework</groupId>
-		<version>0.1.4.RELEASE</version>
+		<version>0.1.6.RELEASE</version>
 	</parent>
 	<artifactId>apple-distributed</artifactId>
 	<name>apple-distributed</name>
 	<url>http://mvnrepo.appleframework.com</url>
 	
-	<properties>
-		<curator.version>1.2.3</curator.version>
-	</properties>
-
 	<dependencies>
 	
 		<dependency>
@@ -29,14 +25,16 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.zookeeper</groupId>
 			<artifactId>zookeeper</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.sgroschupf</groupId>
+			<groupId>com.101tec</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
@@ -52,28 +50,6 @@
 		<dependency>
 			<groupId>commons-pool</groupId>
 			<artifactId>commons-pool</artifactId>
-		</dependency>
-
-		<!-- 
-		<dependency>
-			<groupId>com.google.collections</groupId>
-			<artifactId>google-collections</artifactId>
-		</dependency>
-		 -->
-		<dependency>
-			<groupId>com.netflix.curator</groupId>
-			<artifactId>curator-client</artifactId>
-			<version>${curator.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.netflix.curator</groupId>
-			<artifactId>curator-recipes</artifactId>
-			<version>${curator.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.netflix.curator</groupId>
-			<artifactId>curator-framework</artifactId>
-			<version>${curator.version}</version>
 		</dependency>
 		
 	</dependencies>

@@ -8,7 +8,7 @@
 	</parent>
 	<groupId>com.appleframework</groupId>
 	<artifactId>appleframework</artifactId>
-	<version>0.1.4.RELEASE</version>
+	<version>0.1.6.RELEASE</version>
 	<packaging>pom</packaging>
 
 	<name>appleframework</name>
@@ -39,19 +39,14 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.version>0.1.4.RELEASE</project.version>
+		<project.version>0.1.6.RELEASE</project.version>
 		<appleframework.version>${project.version}</appleframework.version>
-		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<java.version>1.7</java.version>
 
 		<junit.version>4.12</junit.version>
 		<aspectj.version>1.8.5</aspectj.version>
 		<javassist.version>3.20.0-GA</javassist.version>
-		<quartz.scheduler.version>2.2.1</quartz.scheduler.version>
 
-		<jackson.version>1.9.5</jackson.version>
-
-		<mysql.version>5.1.16</mysql.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.2</slf4j.version>
 
@@ -66,30 +61,18 @@
 		<commons.collections.version>3.2.1</commons.collections.version>
 		<commons.pool.version>1.6</commons.pool.version>
 
-		<ehcache.version>2.6.11</ehcache.version>
-		<perf4j.version>0.9.16</perf4j.version>
-
 		<spring.version>4.2.0.RELEASE</spring.version>
 
-		<hibernate.version>4.3.5.Final</hibernate.version>
-		<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
-
-		<mybatis.version>3.3.0</mybatis.version>
-		<mybatis.spring.version>1.2.3</mybatis.spring.version>
-
-
 		<sitemesh.version>2.4.2</sitemesh.version>
-		<!-- 
-		<freemarker.version>[2.3.18,2.4)</freemarker.version>
-		 -->
 		<freemarker.version>2.3.23</freemarker.version>
-		<shiro.version>1.2.4</shiro.version>
-
 
 		<zookeeper.version>3.4.6</zookeeper.version>
-		<zkclient.version>0.1</zkclient.version>
-		<dubbo.version>2.5.3</dubbo.version>
+		<zkclient.version>0.8</zkclient.version>
+		<dubbo.version>2.5.4.APPLE</dubbo.version>
+		
+		<hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
 
+		<maven.test.failure.ignore>true</maven.test.failure.ignore>
 		<maven-site-plugin-version>2.2</maven-site-plugin-version>
 		<maven-resources-plugin-version>2.5</maven-resources-plugin-version>
 		<maven-surefire-plugin-version>2.8.1</maven-surefire-plugin-version>
@@ -111,6 +94,7 @@
 
 	<dependencyManagement>
 		<dependencies>
+			
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -118,23 +102,6 @@
 				<scope>test</scope>
 			</dependency>
 		
-			<dependency>
-				<groupId>c3p0</groupId>
-				<artifactId>c3p0</artifactId>
-				<version>0.9.1.2</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode.xmemcached</groupId>
-				<artifactId>xmemcached</artifactId>
-				<version>2.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.geronimo.specs</groupId>
-				<artifactId>geronimo-jta_1.1_spec</artifactId>
-				<version>1.1.1</version>
-				<scope>runtime</scope>
-				<optional>true</optional>
-			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
@@ -237,21 +204,7 @@
 				<artifactId>freemarker</artifactId>
 				<version>${freemarker.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>org.quartz-scheduler</groupId>
-				<artifactId>quartz</artifactId>
-				<version>${quartz.scheduler.version}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>slf4j-api</artifactId>
-						<groupId>org.slf4j</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>slf4j-log4j12</artifactId>
-						<groupId>org.slf4j</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+
 			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjrt</artifactId>
@@ -261,11 +214,6 @@
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
 				<version>${aspectj.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>args4j</groupId>
-				<artifactId>args4j</artifactId>
-				<version>2.0.12</version>
 			</dependency>
 
 			<dependency>
@@ -319,106 +267,12 @@
 				<version>${commons.pool.version}</version>
 			</dependency>
 
-
 			<dependency>
 				<groupId>com.google.collections</groupId>
 				<artifactId>google-collections</artifactId>
 				<version>1.0</version>
 			</dependency>
-			<dependency>
-				<groupId>org.perf4j</groupId>
-				<artifactId>perf4j</artifactId>
-				<version>${perf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache-core</artifactId>
-				<version>${ehcache.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.googlecode</groupId>
-				<artifactId>hibernate-memcached</artifactId>
-				<version>1.2.2</version>
-				<exclusions>
-					<!-- use org.codehaus.woodstox.wstx-asl -->
-					<exclusion>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>spy</groupId>
-						<artifactId>memcached</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-core</artifactId>
-				<version>${hibernate.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-annotations</artifactId>
-				<version>3.5.1-Final</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-entitymanager</artifactId>
-				<version>${hibernate.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate.javax.persistence</groupId>
-				<artifactId>hibernate-jpa-2.0-api</artifactId>
-				<version>1.0.0.Final</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>${hibernate.validator.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>com.sun.xml.bind</groupId>
-						<artifactId>jaxb-impl</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
 
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-envers</artifactId>
-				<version>${hibernate.version}</version>
-				<exclusions>
-					<exclusion>
-						<artifactId>slf4j-api</artifactId>
-						<groupId>org.slf4j</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>hibernate-entitymanager</artifactId>
-						<groupId>org.hibernate</groupId>
-					</exclusion>
-					<exclusion>
-						<artifactId>freemarker</artifactId>
-						<groupId>freemarker</groupId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-
-			<dependency>
-				<groupId>org.mybatis</groupId>
-				<artifactId>mybatis</artifactId>
-				<version>${mybatis.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.mybatis</groupId>
-				<artifactId>mybatis-spring</artifactId>
-				<version>${mybatis.spring.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>mysql</groupId>
-				<artifactId>mysql-connector-java</artifactId>
-				<version>${mysql.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
@@ -441,45 +295,6 @@
 				<version>1.1.3</version>
 			</dependency>
 
-			<!-- json -->
-			<dependency>
-				<groupId>org.json</groupId>
-				<artifactId>json</artifactId>
-				<version>20080701</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-core-asl</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-mapper-asl</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-jaxrs</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-xc</artifactId>
-				<version>${jackson.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.annotation</groupId>
-				<artifactId>jsr250-api</artifactId>
-				<version>1.0</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>1</version>
-			</dependency>
-
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
@@ -495,33 +310,6 @@
 			</dependency>
 			
 			<dependency>
-				<groupId>javax.ws.rs</groupId>
-				<artifactId>jsr311-api</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.protobuf</groupId>
-				<artifactId>protobuf-java</artifactId>
-				<version>2.4.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.code.guice</groupId>
-				<artifactId>guice</artifactId>
-				<version>3.0-r1291</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>4.2.5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.shiro</groupId>
-				<artifactId>shiro-all</artifactId>
-				<version>${shiro.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>org.javassist</groupId>
 				<artifactId>javassist</artifactId>
 				<version>${javassist.version}</version>
@@ -533,7 +321,7 @@
 				<version>${zookeeper.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.github.sgroschupf</groupId>
+				<groupId>com.101tec</groupId>
 				<artifactId>zkclient</artifactId>
 				<version>${zkclient.version}</version>
 			</dependency>
@@ -550,7 +338,21 @@
 						<groupId>org.jboss.netty</groupId>
 						<artifactId>netty</artifactId>
 					</exclusion>
+					<exclusion>
+						<groupId>org.apache.zookeeper</groupId>
+    					<artifactId>zookeeper</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>com.github.sgroschupf</groupId>
+						<artifactId>zkclient</artifactId>
+					</exclusion>
 				</exclusions>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>${hibernate.validator.version}</version>
 			</dependency>
 
 		</dependencies>
@@ -760,13 +562,13 @@
 		<repository>
 			<id>apple-releases</id>
 			<name>Apple Releases Repository</name>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/repositories/releases</url>
+			<url>http://mvnrepo.appleframework.com:8081/nexus/content/repositories/releases</url>
 		</repository>
 
 		<snapshotRepository>
 			<id>apple-snapshots</id>
 			<name>Apple Snapshots Repository</name>
-			<url>http://mvnrepo.appleframework.com:8787/nexus/content/repositories/snapshots</url>
+			<url>http://mvnrepo.appleframework.com:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	 

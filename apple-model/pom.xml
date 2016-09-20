@@ -6,17 +6,10 @@
 	<parent>
 		<artifactId>appleframework</artifactId>
 		<groupId>com.appleframework</groupId>
-		<version>0.1.4.RELEASE</version>
+		<version>0.1.6.RELEASE</version>
 	</parent>
 	<artifactId>apple-model</artifactId>
 	<name>apple-model</name>
 	<url>http://mvnrepo.appleframework.com</url>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 </project>
